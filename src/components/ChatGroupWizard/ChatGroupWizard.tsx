@@ -27,18 +27,6 @@ const useStyles = createStyles(({ css, token }) => ({
     color: ${token.colorPrimary};
     margin-bottom: ${token.marginMD}px;
   `,
-  divider: css`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-75%, -50%);
-    background: ${token.colorBgContainer};
-    padding: ${token.paddingXS}px ${token.paddingSM}px;
-    font-size: ${token.fontSizeSM}px;
-    font-weight: 500;
-    color: ${token.colorTextSecondary};
-    z-index: 1;
-  `,
   leftColumn: css`
     flex: 1;
     overflow-y: auto;
@@ -188,7 +176,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
           footer={
             <Flexbox gap={8} horizontal justify="space-between">
               <Button onClick={handleCustomCreate} type="default">
-                {t('groupWizard.chooseMembers', { defaultValue: 'Choose Existing Assistants...' })}
+                {t('groupWizard.chooseMembers')}
               </Button>
               <Flexbox gap={8} horizontal>
                 <Button onClick={handleCancel}>{t('cancel', { ns: 'common' })}</Button>
@@ -198,16 +186,14 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                   onClick={handleTemplateConfirm}
                   type="primary"
                 >
-                  {t('groupWizard.createGroup', {
-                    defaultValue: 'Create Group',
-                  })}
+                  {t('groupWizard.createGroup')}
                 </Button>
               </Flexbox>
             </Flexbox>
           }
           onCancel={handleCancel}
           open={open}
-          title={t('groupWizard.title', { defaultValue: 'Create Group Chat' })}
+          title={t('groupWizard.title')}
           width={900}
         >
           <Flexbox className={styles.container} horizontal>
@@ -216,9 +202,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
               <SearchBar
                 allowClear
                 onChange={handleSearchChange}
-                placeholder={t('groupWizard.searchTemplates', {
-                  defaultValue: 'Search template...',
-                })}
+                placeholder={t('groupWizard.searchTemplates')}
                 style={{ marginBottom: 12 }}
                 value={searchTerm}
                 variant="filled"
@@ -228,11 +212,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                 {filteredTemplates.length === 0 ? (
                   <Empty
                     description={
-                      searchTerm
-                        ? t('groupWizard.noMatchingTemplates', {
-                            defaultValue: 'No matching templates',
-                          })
-                        : t('groupWizard.noTemplates', { defaultValue: 'No templates available' })
+                      searchTerm ? t('groupWizard.noMatchingTemplates') : t('groupWizard.noTemplates')
                     }
                     image={Empty.PRESENTED_IMAGE_SIMPLE}
                   />
@@ -267,7 +247,6 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                                 <Text style={{ fontSize: 11 }} type="secondary">
                                   {t('groupWizard.memberCount', {
                                     count: template.members.length,
-                                    defaultValue: '{{count}} members',
                                   })}
                                 </Text>
                               </Flexbox>
@@ -291,18 +270,14 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
               {selectedTemplateMembers.length === 0 ? (
                 <Flexbox align="center" flex={1} justify="center">
                   <Empty
-                    description={t('groupWizard.noSelectedTemplates', {
-                      defaultValue: 'No templates selected',
-                    })}
+                    description={t('groupWizard.noSelectedTemplates')}
                     image={Empty.PRESENTED_IMAGE_SIMPLE}
                   />
                 </Flexbox>
               ) : (
                 <Flexbox flex={1} style={{ overflowY: 'auto' }}>
                   <Text style={{ marginBottom: 16 }} type="secondary">
-                    {t('groupWizard.groupMembers', {
-                      defaultValue: 'These assistants will also added to your list',
-                    })}
+                    {t('groupWizard.groupMembers')}
                   </Text>
                   <List
                     items={selectedTemplateMembers.map((member) => ({

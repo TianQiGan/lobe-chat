@@ -130,7 +130,6 @@ export const chatGroupAction: StateCreator<
     internal_dispatchChatGroup: dispatch,
 
     internal_refreshGroups: async () => {
-      // Reload groups list first
       await get().loadGroups();
 
       // Also rebuild and update groupMap to keep it in sync
