@@ -9,11 +9,14 @@ import { Flexbox } from 'react-layout-kit';
 
 import { ProductLogo } from '@/components/Branding';
 import { ChatGroupWizard } from '@/components/ChatGroupWizard';
+import { groupTemplates } from '@/components/ChatGroupWizard/templates';
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { useActionSWR } from '@/libs/swr';
 import { useChatGroupStore } from '@/store/chatGroup';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
 import { useSessionStore } from '@/store/session';
+import { sessionSelectors } from '@/store/session/slices/session/selectors';
+import { LobeAgentSession } from '@/types/session';
 
 import TogglePanelButton from '../../../features/TogglePanelButton';
 import SessionSearchBar from '../../features/SessionSearchBar';
@@ -33,7 +36,7 @@ export const useStyles = createStyles(({ css, token }) => ({
 const Header = memo(() => {
   const { styles } = useStyles();
   const { t } = useTranslation('chat');
-  const [createSession] = useSessionStore((s) => [s.createSession]);
+  const [createSession, refreshSessions] = useSessionStore((s) => [s.createSession, s.refreshSessions]);
   const [createGroup] = useChatGroupStore((s) => [s.createGroup]);
   const { showCreateSession, enableGroupChat } = useServerConfigStore(featureFlagsSelectors);
   const [isGroupWizardOpen, setIsGroupWizardOpen] = useState(false);
@@ -47,26 +50,65 @@ const Header = memo(() => {
   );
 
   const handleCreateGroupFromTemplate = async (templateId: string) => {
-    setIsGroupWizardOpen(false);
+    // Don't close the modal immediately, keep it open during the process
     setIsCreatingGroup(true);
     try {
-      // TODO: Implement template-based group creation
-      console.log('Creating group from template:', templateId);
+      const template = groupTemplates.find(t => t.id === templateId);
+      if (!template) {
+        throw new Error(`Template ${templateId} not found`);
+      }
+
+      // Create assistants for each member and get their agent IDs
+      const memberAgentIds: string[] = [];
+      for (const member of template.members) {
+        const sessionId = await createSession(
+          {
+            meta: {
+              avatar: member.avatar,
+              backgroundColor: member.backgroundColor,
+              description: `${member.title} - ${template.description}`,
+              title: member.title,
+            },
+          },
+          false // Don't switch to each session
+        );
+        
+        // Refresh sessions to ensure we get the latest data
+        await refreshSessions();
+        
+        // Get the agent ID from the created session
+        const session = sessionSelectors.getSessionById(sessionId)(useSessionStore.getState());
+        if (session && session.type === 'agent') {
+          const agentSession = session as LobeAgentSession;
+          if (agentSession.config?.id) {
+            memberAgentIds.push(agentSession.config.id);
+          }
+        }
+      }
+
+      // Wait 1 second delay between member creation and group creation
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Create the group with the agent IDs
       await createGroup(
         {
-          title: t('defaultGroupChat'),
+          title: template.title,
         },
-        [], // Empty for now, will be filled when template logic is implemented
+        memberAgentIds,
       );
+
+      // Close the modal only after all requests are finished successfully
+      setIsGroupWizardOpen(false);
     } catch (error) {
       console.error('Failed to create group from template:', error);
+      // Keep modal open on error so user can try again
     } finally {
       setIsCreatingGroup(false);
     }
   };
 
   const handleCreateGroupWithMembers = async (selectedAgents: string[]) => {
-    setIsGroupWizardOpen(false);
+    // Don't close modal immediately for custom group creation either
     setIsCreatingGroup(true);
     try {
       await createGroup(
@@ -75,8 +117,11 @@ const Header = memo(() => {
         },
         selectedAgents,
       );
+      // Close modal only after successful creation
+      setIsGroupWizardOpen(false);
     } catch (error) {
       console.error('Failed to create group:', error);
+      // Keep modal open on error
     } finally {
       setIsCreatingGroup(false);
     }
@@ -144,6 +189,7 @@ const Header = memo(() => {
 
       {enableGroupChat && (
         <ChatGroupWizard
+          isCreatingFromTemplate={isCreatingGroup}
           onCancel={handleGroupWizardCancel}
           onCreateCustom={handleCreateGroupWithMembers}
           onCreateFromTemplate={handleCreateGroupFromTemplate}

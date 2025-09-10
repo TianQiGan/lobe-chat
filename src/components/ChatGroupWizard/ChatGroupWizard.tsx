@@ -11,6 +11,8 @@ import { Flexbox } from 'react-layout-kit';
 import { MemberSelectionModal } from '@/components/MemberSelectionModal';
 import { DEFAULT_AVATAR } from '@/const/meta';
 
+import { groupTemplates, GroupTemplate } from './templates';
+
 const { Title } = Typography;
 
 const useStyles = createStyles(({ css, token }) => ({
@@ -72,109 +74,12 @@ const useStyles = createStyles(({ css, token }) => ({
   `,
 }));
 
-interface GroupTemplate {
-  description: string;
-  id: string;
-  members: Array<{
-    avatar: string;
-    backgroundColor?: string;
-    title: string;
-  }>;
-  title: string;
-}
-
-const groupTemplates: GroupTemplate[] = [
-  {
-    description: 'Creative thinking with diverse perspectives',
-    id: 'brainstorm',
-    members: [
-      {
-        avatar: '🧠',
-        backgroundColor: '#E8F5FF',
-        title: 'Creative Director',
-      },
-      {
-        avatar: '💡',
-        backgroundColor: '#FFF7E8',
-        title: 'Innovation Specialist',
-      },
-      {
-        avatar: '🎨',
-        backgroundColor: '#F6E8FF',
-        title: 'Design Thinker',
-      },
-    ],
-    title: 'Brainstorming Team',
-  },
-  {
-    description: 'Data analysis and research team',
-    id: 'analysis',
-    members: [
-      {
-        avatar: '📊',
-        backgroundColor: '#E8F8F5',
-        title: 'Data Analyst',
-      },
-      {
-        avatar: '🔍',
-        backgroundColor: '#E8F5FF',
-        title: 'Research Specialist',
-      },
-      {
-        avatar: '📈',
-        backgroundColor: '#FFF7E8',
-        title: 'Statistics Expert',
-      },
-      {
-        avatar: '🧮',
-        backgroundColor: '#F0F8FF',
-        title: 'Quantitative Analyst',
-      },
-    ],
-    title: 'Analysis Squad',
-  },
-  {
-    description: 'Content creation and editing team',
-    id: 'writing',
-    members: [
-      {
-        avatar: '✍️',
-        backgroundColor: '#F6E8FF',
-        title: 'Content Writer',
-      },
-      {
-        avatar: '📝',
-        backgroundColor: '#E8F8F5',
-        title: 'Editor',
-      },
-    ],
-    title: 'Writing Circle',
-  },
-  {
-    description: 'Strategic planning and project management',
-    id: 'planning',
-    members: [
-      {
-        avatar: '📋',
-        backgroundColor: '#E8F5FF',
-        title: 'Project Manager',
-      },
-      {
-        avatar: '🎯',
-        backgroundColor: '#FFF7E8',
-        title: 'Strategy Lead',
-      },
-      {
-        avatar: '📅',
-        backgroundColor: '#F0F8FF',
-        title: 'Planning Coordinator',
-      },
-    ],
-    title: 'Planning Committee',
-  },
-];
 
 export interface ChatGroupWizardProps {
+  /**
+   * External loading state for template creation (controlled by parent)
+   */
+  isCreatingFromTemplate?: boolean;
   onCancel: () => void;
   onCreateCustom: (selectedAgents: string[]) => void | Promise<void>;
   onCreateFromTemplate: (templateId: string) => void | Promise<void>;
@@ -182,13 +87,15 @@ export interface ChatGroupWizardProps {
 }
 
 const ChatGroupWizard = memo<ChatGroupWizardProps>(
-  ({ onCancel, onCreateFromTemplate, onCreateCustom, open }) => {
+  ({ onCancel, onCreateFromTemplate, onCreateCustom, open, isCreatingFromTemplate: externalLoading }) => {
     const { t } = useTranslation(['chat', 'common']);
     const { styles } = useStyles();
     const [isMemberSelectionOpen, setIsMemberSelectionOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTemplate, setSelectedTemplate] = useState<string>('');
-    const [isCreatingFromTemplate, setIsCreatingFromTemplate] = useState(false);
+    
+    // Use external loading state if provided, otherwise use internal state
+    const isCreatingFromTemplate = externalLoading ?? false;
 
     const handleTemplateToggle = (templateId: string) => {
       setSelectedTemplate((prev) => (prev === templateId ? '' : templateId));
@@ -196,15 +103,20 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
 
     const handleTemplateConfirm = async () => {
       if (!selectedTemplate) return;
-
-      setIsCreatingFromTemplate(true);
-      try {
+      
+      // If using external loading state, don't manage loading internally
+      if (externalLoading !== undefined) {
         await onCreateFromTemplate(selectedTemplate);
+        // Reset will be handled by parent after successful creation
         handleReset();
-      } catch (error) {
-        console.error('Failed to create group from template:', error);
-      } finally {
-        setIsCreatingFromTemplate(false);
+      } else {
+        // Fallback for backwards compatibility
+        try {
+          await onCreateFromTemplate(selectedTemplate);
+          handleReset();
+        } catch (error) {
+          console.error('Failed to create group from template:', error);
+        }
       }
     };
 
