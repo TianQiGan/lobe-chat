@@ -1,10 +1,10 @@
 import Render from './Render';
-import { createRemarkCustomTagPlugin } from '../remarkPlugins/createRemarkCustomTagPlugin';
+import { createRemarkCustomTagWithAttributesPlugin } from '../remarkPlugins/createRemarkCustomTagWithAttributesPlugin';
 import { MarkdownElement } from '../type';
 
 const Mention: MarkdownElement = {
   Component: Render,
-  remarkPlugin: createRemarkCustomTagPlugin('mention'),
+  remarkPlugin: createRemarkCustomTagWithAttributesPlugin('mention'),
   tag: 'mention',
 };
 

@@ -244,7 +244,7 @@ export const useSendGroupMessage = () => {
     const messageType = fileList.length === 0 ? 'text' : hasImages ? 'image' : 'file';
 
     analytics?.track({
-      name: 'send_message',
+      name: 'send_group_message',
       properties: {
         chat_id: store.activeId || 'unknown',
         current_topic: topicSelectors.currentActiveTopic(store)?.title || null,
