@@ -1,6 +1,6 @@
 'use client';
 
-import { GroupAvatar, List, SearchBar, Text } from '@lobehub/ui';
+import { Avatar, GroupAvatar, List, SearchBar, Text } from '@lobehub/ui';
 import { Button, Card, Checkbox, Empty, Modal, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Users } from 'lucide-react';
@@ -392,20 +392,12 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                   <List
                     items={selectedTemplateMembers.map((member) => ({
                       avatar: (
-                        <div
-                          style={{
-                            alignItems: 'center',
-                            backgroundColor: member.backgroundColor || '#f0f0f0',
-                            borderRadius: '50%',
-                            display: 'flex',
-                            fontSize: 16,
-                            height: 32,
-                            justifyContent: 'center',
-                            width: 32,
-                          }}
-                        >
-                          {member.avatar}
-                        </div>
+                        <Avatar
+                          avatar={member.avatar}
+                          background={member.backgroundColor}
+                          shape="circle"
+                          size={40}
+                        />
                       ),
                       description: member.description,
                       key: member.key,
