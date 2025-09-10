@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
 import { ProductLogo } from '@/components/Branding';
-import { MemberSelectionModal } from '@/components/MemberSelectionModal';
+import { ChatGroupWizard } from '@/components/ChatGroupWizard';
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { useActionSWR } from '@/libs/swr';
 import { useChatGroupStore } from '@/store/chatGroup';
@@ -36,7 +36,7 @@ const Header = memo(() => {
   const [createSession] = useSessionStore((s) => [s.createSession]);
   const [createGroup] = useChatGroupStore((s) => [s.createGroup]);
   const { showCreateSession, enableGroupChat } = useServerConfigStore(featureFlagsSelectors);
-  const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
+  const [isGroupWizardOpen, setIsGroupWizardOpen] = useState(false);
 
   // We need pass inital member list so we cannot use mutate
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
@@ -46,8 +46,27 @@ const Header = memo(() => {
     () => createSession(),
   );
 
+  const handleCreateGroupFromTemplate = async (templateId: string) => {
+    setIsGroupWizardOpen(false);
+    setIsCreatingGroup(true);
+    try {
+      // TODO: Implement template-based group creation
+      console.log('Creating group from template:', templateId);
+      await createGroup(
+        {
+          title: t('defaultGroupChat'),
+        },
+        [], // Empty for now, will be filled when template logic is implemented
+      );
+    } catch (error) {
+      console.error('Failed to create group from template:', error);
+    } finally {
+      setIsCreatingGroup(false);
+    }
+  };
+
   const handleCreateGroupWithMembers = async (selectedAgents: string[]) => {
-    setIsGroupModalOpen(false);
+    setIsGroupWizardOpen(false);
     setIsCreatingGroup(true);
     try {
       await createGroup(
@@ -63,8 +82,8 @@ const Header = memo(() => {
     }
   };
 
-  const handleGroupModalCancel = () => {
-    setIsGroupModalOpen(false);
+  const handleGroupWizardCancel = () => {
+    setIsGroupWizardOpen(false);
   };
 
   return (
@@ -102,7 +121,7 @@ const Header = memo(() => {
                           key: 'newGroup',
                           label: t('newGroupChat'),
                           onClick: () => {
-                            setIsGroupModalOpen(true);
+                            setIsGroupWizardOpen(true);
                           },
                         },
                       ]
@@ -124,11 +143,11 @@ const Header = memo(() => {
       <SessionSearchBar />
 
       {enableGroupChat && (
-        <MemberSelectionModal
-          mode="create"
-          onCancel={handleGroupModalCancel}
-          onConfirm={handleCreateGroupWithMembers}
-          open={isGroupModalOpen}
+        <ChatGroupWizard
+          onCancel={handleGroupWizardCancel}
+          onCreateCustom={handleCreateGroupWithMembers}
+          onCreateFromTemplate={handleCreateGroupFromTemplate}
+          open={isGroupWizardOpen}
         />
       )}
     </Flexbox>
