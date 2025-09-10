@@ -75,7 +75,7 @@ const InputEditor = memo<{ defaultRows?: number }>(({ defaultRows = 2 }) => {
           ? {
               items: mentionItems,
               markdownWriter: (mention) => {
-                return `<mention>${mention.metadata.id}</mention>`;
+                return `<mention id="${mention.metadata.id}">${mention.label}</mention>`;
               },
               onSelect: (editor, option) => {
                 editor.dispatchCommand(INSERT_MENTION_COMMAND, {
