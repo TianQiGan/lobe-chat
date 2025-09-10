@@ -168,11 +168,12 @@ const Actions = memo<ActionProps>(({ group, id, openCreateGroupModal, parentType
                 onOk: async () => {
                   if (parentType === 'group') {
                     await deleteGroup(id);
+                    message.success(t('confirmRemoveGroupSuccess'));
                   } else {
                     await removeSession(id);
+                    message.success(t('confirmRemoveSessionSuccess'));
                   }
 
-                  message.success(t('confirmRemoveSessionSuccess'));
                 },
                 rootClassName: styles.modalRoot,
                 title: sessionType === 'group' ? t('confirmRemoveChatGroupItemAlert') : t('confirmRemoveSessionItemAlert'),

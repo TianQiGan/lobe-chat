@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, GroupAvatar, List, SearchBar, Text } from '@lobehub/ui';
-import { Button, Card, Checkbox, Empty, Modal, Typography } from 'antd';
+import { Button, Card, Checkbox, Empty, Modal } from 'antd';
 import { createStyles } from 'antd-style';
 import { Users } from 'lucide-react';
 import { type ChangeEvent, memo, useCallback, useMemo, useState } from 'react';
@@ -11,9 +11,7 @@ import { Flexbox } from 'react-layout-kit';
 import { MemberSelectionModal } from '@/components/MemberSelectionModal';
 import { DEFAULT_AVATAR } from '@/const/meta';
 
-import { groupTemplates, GroupTemplate } from './templates';
-
-const { Title } = Typography;
+import { groupTemplates } from './templates';
 
 const useStyles = createStyles(({ css, token }) => ({
   container: css`
@@ -74,7 +72,6 @@ const useStyles = createStyles(({ css, token }) => ({
   `,
 }));
 
-
 export interface ChatGroupWizardProps {
   /**
    * External loading state for template creation (controlled by parent)
@@ -87,13 +84,19 @@ export interface ChatGroupWizardProps {
 }
 
 const ChatGroupWizard = memo<ChatGroupWizardProps>(
-  ({ onCancel, onCreateFromTemplate, onCreateCustom, open, isCreatingFromTemplate: externalLoading }) => {
+  ({
+    onCancel,
+    onCreateFromTemplate,
+    onCreateCustom,
+    open,
+    isCreatingFromTemplate: externalLoading,
+  }) => {
     const { t } = useTranslation(['chat', 'common']);
     const { styles } = useStyles();
     const [isMemberSelectionOpen, setIsMemberSelectionOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTemplate, setSelectedTemplate] = useState<string>('');
-    
+
     // Use external loading state if provided, otherwise use internal state
     const isCreatingFromTemplate = externalLoading ?? false;
 
@@ -101,9 +104,14 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
       setSelectedTemplate((prev) => (prev === templateId ? '' : templateId));
     };
 
+    const handleReset = () => {
+      setSelectedTemplate('');
+      setSearchTerm('');
+    };
+
     const handleTemplateConfirm = async () => {
       if (!selectedTemplate) return;
-      
+
       // If using external loading state, don't manage loading internally
       if (externalLoading !== undefined) {
         await onCreateFromTemplate(selectedTemplate);
@@ -168,11 +176,6 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
         title: member.title,
       }));
     }, [selectedTemplate]);
-
-    const handleReset = () => {
-      setSelectedTemplate('');
-      setSearchTerm('');
-    };
 
     const handleCancel = () => {
       handleReset();

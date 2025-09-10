@@ -4,6 +4,7 @@ import { StateCreator } from 'zustand/vanilla';
 import { ChatGroupItem, NewChatGroup } from '@/database/schemas/chatGroup';
 import { chatGroupService } from '@/services/chatGroup';
 import { getSessionStoreState } from '@/store/session';
+import { INBOX_SESSION_ID } from '@/const/session';
 
 import { ChatGroupState, initialChatGroupState } from './initialState';
 import { ChatGroupReducer, chatGroupReducers } from './reducers';
@@ -118,6 +119,12 @@ export const chatGroupAction: StateCreator<
 
       await get().loadGroups();
       await getSessionStoreState().refreshSessions();
+
+      // If the active session is the deleted group, switch to the inbox session
+      const sessionStore = getSessionStoreState();
+      if (sessionStore.activeId === id) {
+        sessionStore.switchSession(INBOX_SESSION_ID);
+      }
     },
 
     internal_dispatchChatGroup: dispatch,
