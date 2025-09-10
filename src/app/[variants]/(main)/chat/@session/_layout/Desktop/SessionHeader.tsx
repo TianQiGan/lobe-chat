@@ -9,7 +9,7 @@ import { Flexbox } from 'react-layout-kit';
 
 import { ProductLogo } from '@/components/Branding';
 import { ChatGroupWizard } from '@/components/ChatGroupWizard';
-import { groupTemplates } from '@/components/ChatGroupWizard/templates';
+import { useGroupTemplates } from '@/components/ChatGroupWizard/templates';
 import { DESKTOP_HEADER_ICON_SIZE } from '@/const/layoutTokens';
 import { useActionSWR } from '@/libs/swr';
 import { useChatGroupStore } from '@/store/chatGroup';
@@ -36,6 +36,7 @@ export const useStyles = createStyles(({ css, token }) => ({
 const Header = memo(() => {
   const { styles } = useStyles();
   const { t } = useTranslation('chat');
+  const groupTemplates = useGroupTemplates();
   const [createSession, refreshSessions] = useSessionStore((s) => [s.createSession, s.refreshSessions]);
   const [createGroup] = useChatGroupStore((s) => [s.createGroup]);
   const { showCreateSession, enableGroupChat } = useServerConfigStore(featureFlagsSelectors);
@@ -69,6 +70,9 @@ const Header = memo(() => {
               description: `${member.title} - ${template.description}`,
               title: member.title,
             },
+            config: {
+              systemRole: member.systemRole,
+            },
           },
           false // Don't switch to each session
         );
@@ -87,7 +91,9 @@ const Header = memo(() => {
       }
 
       // Wait 1 second delay between member creation and group creation
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise<void>(resolve => {
+        setTimeout(() => resolve(), 1000);
+      });
 
       // Create the group with the agent IDs
       await createGroup(

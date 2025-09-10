@@ -11,7 +11,7 @@ import { Flexbox } from 'react-layout-kit';
 import { MemberSelectionModal } from '@/components/MemberSelectionModal';
 import { DEFAULT_AVATAR } from '@/const/meta';
 
-import { groupTemplates } from './templates';
+import { useGroupTemplates } from './templates';
 
 const useStyles = createStyles(({ css, token }) => ({
   container: css`
@@ -31,7 +31,7 @@ const useStyles = createStyles(({ css, token }) => ({
     flex: 1;
     overflow-y: auto;
     border-right: 1px solid ${token.colorBorderSecondary};
-    padding: ${token.paddingSM}px;
+    padding-top: ${token.paddingSM}px;
     display: flex;
     flex-direction: column;
     user-select: none;
@@ -56,7 +56,7 @@ const useStyles = createStyles(({ css, token }) => ({
   templateList: css`
     flex: 1;
     overflow-y: auto;
-    padding: 0;
+    padding: ${token.paddingSM}px;
   `,
 }));
 
@@ -81,6 +81,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
   }) => {
     const { t } = useTranslation(['chat', 'common']);
     const { styles } = useStyles();
+    const groupTemplates = useGroupTemplates();
     const [isMemberSelectionOpen, setIsMemberSelectionOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTemplate, setSelectedTemplate] = useState<string>('');
@@ -203,7 +204,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                 allowClear
                 onChange={handleSearchChange}
                 placeholder={t('groupWizard.searchTemplates')}
-                style={{ marginBottom: 12 }}
+                style={{ marginBottom: 12, marginLeft: 12, marginRight: 12 }}
                 value={searchTerm}
                 variant="filled"
               />

@@ -83,7 +83,7 @@ const useStyles = createStyles(({ css, token }) => ({
     flex: 1;
     overflow-y: auto;
     border-right: 1px solid ${token.colorBorderSecondary};
-    padding: ${token.paddingSM}px;
+    padding: ${token.paddingSM}px ${token.paddingSM}px 0 ${token.paddingSM}px;
     select: none;
   `,
   listItem: css`
