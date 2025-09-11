@@ -1,8 +1,7 @@
 'use client';
 
-import { ActionIcon, Avatar, GroupAvatar, List, SearchBar, Text } from '@lobehub/ui';
-import { useHover } from 'ahooks';
-import { Button, Card, Checkbox, Empty, Modal } from 'antd';
+import { ActionIcon, Avatar, GroupAvatar, List, Modal, SearchBar, Text } from '@lobehub/ui';
+import { Button, Checkbox, Empty } from 'antd';
 import { createStyles } from 'antd-style';
 import { Users, X } from 'lucide-react';
 import { type ChangeEvent, memo, useCallback, useMemo, useRef, useState } from 'react';
@@ -23,14 +22,9 @@ const TemplateItem = memo<{
   template: any;
 }>(({ template, isSelected, onToggle, styles, cx, t }) => {
   const ref = useRef(null);
-  const isHovering = useHover(ref);
 
   return (
-    <div
-      className={cx(styles.listItem)}
-      onClick={() => onToggle(template.id)}
-      ref={ref}
-    >
+    <div className={cx(styles.listItem)} onClick={() => onToggle(template.id)} ref={ref}>
       <Flexbox align="center" gap={12} horizontal width="100%">
         <Checkbox
           checked={isSelected}
@@ -70,12 +64,11 @@ const useStyles = createStyles(({ css, token }) => ({
     height: 500px;
     border: 1px solid ${token.colorBorderSecondary};
     border-radius: ${token.borderRadius}px;
-    position: relative;
   `,
-  customIcon: css`
-    font-size: 48px;
-    color: ${token.colorPrimary};
-    margin-bottom: ${token.marginMD}px;
+  description: css`
+    color: ${token.colorTextSecondary};
+    font-size: 11px;
+    line-height: 1.2;
   `,
   leftColumn: css`
     flex: 1;
@@ -83,18 +76,6 @@ const useStyles = createStyles(({ css, token }) => ({
     border-right: 1px solid ${token.colorBorderSecondary};
     padding: ${token.paddingSM}px ${token.paddingSM}px 0 ${token.paddingSM}px;
     user-select: none;
-  `,
-  rightColumn: css`
-    flex: 1;
-    overflow-y: auto;
-    padding: ${token.paddingSM}px;
-    display: flex;
-    flex-direction: column;
-  `,
-  description: css`
-    color: ${token.colorTextSecondary};
-    font-size: 11px;
-    line-height: 1.2;
   `,
   listItem: css`
     position: relative;
@@ -108,14 +89,20 @@ const useStyles = createStyles(({ css, token }) => ({
       background: ${token.colorFillTertiary};
     }
   `,
+  rightColumn: css`
+    flex: 1;
+    overflow-y: auto;
+    padding: ${token.paddingSM}px;
+    display: flex;
+    flex-direction: column;
+  `,
   templateCard: css`
     cursor: pointer;
     transition: all 0.2s ease;
     border: 1px solid ${token.colorBorderSecondary};
 
     &:hover {
-      border-color: ${token.colorPrimary};
-      box-shadow: 0 2px 8px ${token.colorPrimary}20;
+      background: ${token.colorFillTertiary};
     }
   `,
   templateList: css`
@@ -294,7 +281,9 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                 {filteredTemplates.length === 0 ? (
                   <Empty
                     description={
-                      searchTerm ? t('groupWizard.noMatchingTemplates') : t('groupWizard.noTemplates')
+                      searchTerm
+                        ? t('groupWizard.noMatchingTemplates')
+                        : t('groupWizard.noTemplates')
                     }
                     image={Empty.PRESENTED_IMAGE_SIMPLE}
                   />
