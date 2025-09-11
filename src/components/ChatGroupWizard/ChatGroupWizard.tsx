@@ -1,10 +1,11 @@
 'use client';
 
-import { Avatar, GroupAvatar, List, SearchBar, Text } from '@lobehub/ui';
+import { ActionIcon, Avatar, GroupAvatar, List, SearchBar, Text } from '@lobehub/ui';
+import { useHover } from 'ahooks';
 import { Button, Card, Checkbox, Empty, Modal } from 'antd';
 import { createStyles } from 'antd-style';
-import { Users } from 'lucide-react';
-import { type ChangeEvent, memo, useCallback, useMemo, useState } from 'react';
+import { Users, X } from 'lucide-react';
+import { type ChangeEvent, memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
@@ -12,6 +13,55 @@ import { MemberSelectionModal } from '@/components/MemberSelectionModal';
 import { DEFAULT_AVATAR } from '@/const/meta';
 
 import { useGroupTemplates } from './templates';
+
+const TemplateItem = memo<{
+  cx: any;
+  isSelected: boolean;
+  onToggle: (templateId: string) => void;
+  styles: any;
+  t: any;
+  template: any;
+}>(({ template, isSelected, onToggle, styles, cx, t }) => {
+  const ref = useRef(null);
+  const isHovering = useHover(ref);
+
+  return (
+    <div
+      className={cx(styles.listItem)}
+      onClick={() => onToggle(template.id)}
+      ref={ref}
+    >
+      <Flexbox align="center" gap={12} horizontal width="100%">
+        <Checkbox
+          checked={isSelected}
+          onChange={() => onToggle(template.id)}
+          onClick={(e) => e.stopPropagation()}
+        />
+        <GroupAvatar
+          avatars={template.members.map((member: any) => ({
+            avatar: member.avatar || DEFAULT_AVATAR,
+            background: member.backgroundColor || undefined,
+          }))}
+          size={40}
+        />
+        <Flexbox flex={1} gap={2}>
+          <Text className={styles.title}>{template.title}</Text>
+          <Text className={styles.description} ellipsis>
+            {template.description}
+          </Text>
+          <Flexbox align="center" gap={4} horizontal>
+            <Users size={11} style={{ color: '#999' }} />
+            <Text style={{ fontSize: 11 }} type="secondary">
+              {t('groupWizard.memberCount', {
+                count: template.members.length,
+              })}
+            </Text>
+          </Flexbox>
+        </Flexbox>
+      </Flexbox>
+    </div>
+  );
+});
 
 const useStyles = createStyles(({ css, token }) => ({
   container: css`
@@ -31,9 +81,7 @@ const useStyles = createStyles(({ css, token }) => ({
     flex: 1;
     overflow-y: auto;
     border-right: 1px solid ${token.colorBorderSecondary};
-    padding-top: ${token.paddingSM}px;
-    display: flex;
-    flex-direction: column;
+    padding: ${token.paddingSM}px ${token.paddingSM}px 0 ${token.paddingSM}px;
     user-select: none;
   `,
   rightColumn: css`
@@ -42,6 +90,23 @@ const useStyles = createStyles(({ css, token }) => ({
     padding: ${token.paddingSM}px;
     display: flex;
     flex-direction: column;
+  `,
+  description: css`
+    color: ${token.colorTextSecondary};
+    font-size: 11px;
+    line-height: 1.2;
+  `,
+  listItem: css`
+    position: relative;
+    margin-block: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: ${token.paddingSM}px !important;
+    border-radius: ${token.borderRadius}px;
+
+    &:hover {
+      background: ${token.colorFillTertiary};
+    }
   `,
   templateCard: css`
     cursor: pointer;
@@ -57,6 +122,10 @@ const useStyles = createStyles(({ css, token }) => ({
     flex: 1;
     overflow-y: auto;
     padding: ${token.paddingSM}px;
+  `,
+  title: css`
+    font-weight: 500;
+    font-size: 14px;
   `,
 }));
 
@@ -80,11 +149,12 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
     isCreatingFromTemplate: externalLoading,
   }) => {
     const { t } = useTranslation(['chat', 'common']);
-    const { styles } = useStyles();
+    const { styles, cx } = useStyles();
     const groupTemplates = useGroupTemplates();
     const [isMemberSelectionOpen, setIsMemberSelectionOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedTemplate, setSelectedTemplate] = useState<string>('');
+    const [removedMembers, setRemovedMembers] = useState<Record<string, string[]>>({});
 
     // Use external loading state if provided, otherwise use internal state
     const isCreatingFromTemplate = externalLoading ?? false;
@@ -96,7 +166,15 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
     const handleReset = () => {
       setSelectedTemplate('');
       setSearchTerm('');
+      setRemovedMembers({});
     };
+
+    const handleRemoveMember = useCallback((templateId: string, memberTitle: string) => {
+      setRemovedMembers((prev) => ({
+        ...prev,
+        [templateId]: [...(prev[templateId] || []), memberTitle],
+      }));
+    }, []);
 
     const handleTemplateConfirm = async () => {
       if (!selectedTemplate) return;
@@ -157,14 +235,18 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
       const template = groupTemplates.find((t) => t.id === selectedTemplate);
       if (!template) return [];
 
-      return template.members.map((member) => ({
-        avatar: member.avatar || DEFAULT_AVATAR,
-        backgroundColor: member.backgroundColor,
-        description: template.title,
-        key: `${selectedTemplate}-${member.title}`,
-        title: member.title,
-      }));
-    }, [selectedTemplate]);
+      const removedForTemplate = removedMembers[selectedTemplate] || [];
+
+      return template.members
+        .filter((member) => !removedForTemplate.includes(member.title))
+        .map((member) => ({
+          avatar: member.avatar || DEFAULT_AVATAR,
+          backgroundColor: member.backgroundColor,
+          description: template.title,
+          key: `${selectedTemplate}-${member.title}`,
+          title: member.title,
+        }));
+    }, [selectedTemplate, removedMembers, groupTemplates]);
 
     const handleCancel = () => {
       handleReset();
@@ -195,21 +277,20 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
           onCancel={handleCancel}
           open={open}
           title={t('groupWizard.title')}
-          width={900}
+          width={800}
         >
           <Flexbox className={styles.container} horizontal>
             {/* Left Column - Templates */}
-            <Flexbox className={styles.leftColumn}>
+            <Flexbox className={styles.leftColumn} flex={1} gap={12}>
               <SearchBar
                 allowClear
                 onChange={handleSearchChange}
                 placeholder={t('groupWizard.searchTemplates')}
-                style={{ marginBottom: 12, marginLeft: 12, marginRight: 12 }}
                 value={searchTerm}
                 variant="filled"
               />
 
-              <div className={styles.templateList}>
+              <Flexbox flex={1} style={{ overflowY: 'auto' }}>
                 {filteredTemplates.length === 0 ? (
                   <Empty
                     description={
@@ -218,56 +299,29 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                     image={Empty.PRESENTED_IMAGE_SIMPLE}
                   />
                 ) : (
-                  <Flexbox gap={12}>
+                  <div>
                     {filteredTemplates.map((template) => {
                       const isSelected = selectedTemplate === template.id;
 
                       return (
-                        <Card
-                          className={styles.templateCard}
-                          hoverable
+                        <TemplateItem
+                          cx={cx}
+                          isSelected={isSelected}
                           key={template.id}
-                          onClick={() => handleTemplateToggle(template.id)}
-                          size="small"
-                        >
-                          <Flexbox align="center" gap={12} horizontal>
-                            <GroupAvatar
-                              avatars={template.members.map((member) => ({
-                                avatar: member.avatar || DEFAULT_AVATAR,
-                                background: member.backgroundColor || undefined,
-                              }))}
-                              size={40}
-                            />
-                            <Flexbox flex={1}>
-                              <Text strong>{template.title}</Text>
-                              <Text style={{ fontSize: 12 }} type="secondary">
-                                {template.description}
-                              </Text>
-                              <Flexbox align="center" gap={4} horizontal>
-                                <Users size={11} style={{ color: '#999' }} />
-                                <Text style={{ fontSize: 11 }} type="secondary">
-                                  {t('groupWizard.memberCount', {
-                                    count: template.members.length,
-                                  })}
-                                </Text>
-                              </Flexbox>
-                            </Flexbox>
-                            <Checkbox
-                              checked={isSelected}
-                              onChange={() => handleTemplateToggle(template.id)}
-                              onClick={(e) => e.stopPropagation()}
-                            />
-                          </Flexbox>
-                        </Card>
+                          onToggle={handleTemplateToggle}
+                          styles={styles}
+                          t={t}
+                          template={template}
+                        />
                       );
                     })}
-                  </Flexbox>
+                  </div>
                 )}
-              </div>
+              </Flexbox>
             </Flexbox>
 
             {/* Right Column - Group Members */}
-            <Flexbox className={styles.rightColumn}>
+            <Flexbox className={styles.rightColumn} flex={1}>
               {selectedTemplateMembers.length === 0 ? (
                 <Flexbox align="center" flex={1} justify="center">
                   <Empty
@@ -282,6 +336,14 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                   </Text>
                   <List
                     items={selectedTemplateMembers.map((member) => ({
+                      actions: (
+                        <ActionIcon
+                          icon={X}
+                          onClick={() => handleRemoveMember(selectedTemplate, member.title)}
+                          size="small"
+                          style={{ color: '#999' }}
+                        />
+                      ),
                       avatar: (
                         <Avatar
                           avatar={member.avatar}
@@ -292,6 +354,7 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
                       ),
                       description: member.description,
                       key: member.key,
+                      showAction: true,
                       title: member.title,
                     }))}
                   />
