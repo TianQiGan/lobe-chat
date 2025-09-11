@@ -15,7 +15,7 @@ export interface GroupTemplate {
 export const useGroupTemplates = (): GroupTemplate[] => {
   const { t } = useTranslation('welcome');
 
-  const templateKeys = ['brainstorm', 'analysis', 'writing', 'planning', 'product'] as const;
+  const templateKeys = ['brainstorm', 'analysis', 'writing', 'planning', 'product', 'game'] as const;
 
   return templateKeys.map((key) => ({
     description: t(`guide.groupTemplates.${key}.description`),

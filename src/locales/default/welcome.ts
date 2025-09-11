@@ -190,6 +190,36 @@ export default {
         ],
         title: '头脑风暴团队',
       },
+      game: {
+        description: '畅玩各种多人文字游戏，例如狼人杀和谁是卧底',
+        members: [
+          {
+            avatar: '🧠',
+            backgroundColor: '#E8F5FF',
+            systemRole: '你是一位主持人，擅长组织各种多人文字游戏，能够引导玩家进行游戏。',
+            title: '游戏主持人',
+          },
+          {
+            avatar: '🧑‍🔬',
+            backgroundColor: '#FFF7E8',
+            systemRole: '你是一位玩家，擅长参与各种多人文字游戏，能够根据游戏规则进行游戏。',
+            title: '游戏玩家',
+          },
+          {
+            avatar: '🎨',
+            backgroundColor: '#F6E8FF',
+            systemRole: '你是一位玩家，擅长参与各种多人文字游戏，能够根据游戏规则进行游戏。',
+            title: '游戏玩家',
+          },
+          {
+            avatar: '🧑‍🎨',
+            backgroundColor: '#F6E8FF',
+            systemRole: '你是一位玩家，擅长参与各种多人文字游戏，能够根据游戏规则进行游戏。',
+            title: '游戏玩家',
+          },
+        ],
+        title: '游戏厅',
+      },
       planning: {
         description: '策略规划与项目管理，统筹全局',
         members: [
