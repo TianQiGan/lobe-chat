@@ -228,42 +228,49 @@ export default {
             backgroundColor: '#E8F5FF',
             systemRole:
               '你是项目经理，负责项目的整体规划、进度管控和资源协调，确保项目按时高质量完成。',
-            title: '项目经理',
+            title: '厨师',
           },
           {
             avatar: '🎯',
             backgroundColor: '#FFF7E8',
             systemRole: '你是策略负责人，专门制定长期战略规划，分析市场机会，制定目标和实现路径。',
-            title: '策略负责人',
+            title: '原料采购专家',
           },
           {
             avatar: '🧑‍🎨',
             backgroundColor: '#F0F8FF',
             systemRole:
-              '你是规划协调员，负责制定详细的执行计划，协调各部门资源，确保计划的可执行性。',
-            title: '规划协调员',
+              '你是美食研发专家，负责制定详细的执行计划，协调各部门资源，确保计划的可执行性。',
+            title: '美食研发专家',
           },
         ],
-        title: '规划委员会',
+        title: '美食研发团队',
       },
       product: {
-        description: '内容创作与编辑，打造优质文案',
+        description: '产品设计与开发，打造优质产品',
         members: [
           {
-            avatar: '✍️',
+            avatar: '🎨',
             backgroundColor: '#F6E8FF',
-            systemRole:
-              '你是内容写手，擅长创作各类文体的内容，能够根据不同场景和受众调整写作风格。',
-            title: '内容写手',
+            systemRole: '你是设计师，擅长设计各种类型的产品，能够根据产品需求进行设计。',
+            title: '设计师',
           },
           {
-            avatar: '📝',
+            avatar: '🧑',
+            backgroundColor: '#E8F5FF',
+            systemRole:
+              '你是产品经理，负责产品的规划、设计、开发和维护，确保产品的质量和用户体验。',
+            title: '产品经理',
+          },
+          {
+            avatar: '🧑‍💻',
             backgroundColor: '#E8F8F5',
-            systemRole: '你是编辑，负责文本的校对、润色和优化，确保内容的准确性、流畅性和专业性。',
-            title: '编辑',
+            systemRole:
+              '你是经验丰富的全栈工程师，擅长开发各种类型的产品，能够根据产品需求进行开发。',
+            title: '全栈工程师',
           },
         ],
-        title: '写作圈',
+        title: '产品研发团队',
       },
       writing: {
         description: '内容创作与编辑，打造优质文案',

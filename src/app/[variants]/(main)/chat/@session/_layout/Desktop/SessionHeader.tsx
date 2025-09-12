@@ -37,7 +37,10 @@ const Header = memo(() => {
   const { styles } = useStyles();
   const { t } = useTranslation('chat');
   const groupTemplates = useGroupTemplates();
-  const [createSession, refreshSessions] = useSessionStore((s) => [s.createSession, s.refreshSessions]);
+  const [createSession, refreshSessions] = useSessionStore((s) => [
+    s.createSession,
+    s.refreshSessions,
+  ]);
   const [createGroup] = useChatGroupStore((s) => [s.createGroup]);
   const { showCreateSession, enableGroupChat } = useServerConfigStore(featureFlagsSelectors);
   const [isGroupWizardOpen, setIsGroupWizardOpen] = useState(false);
@@ -54,7 +57,7 @@ const Header = memo(() => {
     // Don't close the modal immediately, keep it open during the process
     setIsCreatingGroup(true);
     try {
-      const template = groupTemplates.find(t => t.id === templateId);
+      const template = groupTemplates.find((t) => t.id === templateId);
       if (!template) {
         throw new Error(`Template ${templateId} not found`);
       }
@@ -64,22 +67,22 @@ const Header = memo(() => {
       for (const member of template.members) {
         const sessionId = await createSession(
           {
+            config: {
+              systemRole: member.systemRole,
+            },
             meta: {
               avatar: member.avatar,
               backgroundColor: member.backgroundColor,
               description: `${member.title} - ${template.description}`,
               title: member.title,
             },
-            config: {
-              systemRole: member.systemRole,
-            },
           },
-          false // Don't switch to each session
+          false, // Don't switch to each session
         );
-        
+
         // Refresh sessions to ensure we get the latest data
         await refreshSessions();
-        
+
         // Get the agent ID from the created session
         const session = sessionSelectors.getSessionById(sessionId)(useSessionStore.getState());
         if (session && session.type === 'agent') {
@@ -91,7 +94,7 @@ const Header = memo(() => {
       }
 
       // Wait 1 second delay between member creation and group creation
-      await new Promise<void>(resolve => {
+      await new Promise<void>((resolve) => {
         setTimeout(() => resolve(), 1000);
       });
 
