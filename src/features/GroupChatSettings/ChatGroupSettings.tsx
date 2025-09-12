@@ -96,6 +96,13 @@ const ChatGroupSettings = memo(() => {
         label: t('settingGroupChat.revealDM.title'),
         name: 'revealDM',
       },
+      {
+        children: <Switch />,
+        desc: t('settingGroupChat.allowDM.desc'),
+        divider: false,
+        label: t('settingGroupChat.allowDM.title'),
+        name: 'allowDM',
+      },
     ],
     title: t('settingGroupChat.title'),
   };

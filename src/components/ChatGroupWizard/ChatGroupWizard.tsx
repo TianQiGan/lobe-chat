@@ -16,6 +16,7 @@ import { useGroupTemplates } from './templates';
 const TemplateItem = memo<{
   cx: any;
   isSelected: boolean;
+  // eslint-disable-next-line unused-imports/no-unused-vars
   onToggle: (templateId: string) => void;
   styles: any;
   t: any;
@@ -61,58 +62,66 @@ const useStyles = createStyles(({ css, token }) => ({
   container: css`
     display: flex;
     flex-direction: row;
+
     height: 500px;
     border: 1px solid ${token.colorBorderSecondary};
     border-radius: ${token.borderRadius}px;
   `,
   description: css`
-    color: ${token.colorTextSecondary};
     font-size: 11px;
     line-height: 1.2;
+    color: ${token.colorTextSecondary};
   `,
   leftColumn: css`
-    flex: 1;
-    overflow-y: auto;
-    border-right: 1px solid ${token.colorBorderSecondary};
-    padding: ${token.paddingSM}px ${token.paddingSM}px 0 ${token.paddingSM}px;
     user-select: none;
+
+    overflow-y: auto;
+    flex: 1;
+
+    padding-block: ${token.paddingSM}px 0;
+    padding-inline: ${token.paddingSM}px;
+    border-inline-end: 1px solid ${token.colorBorderSecondary};
   `,
   listItem: css`
-    position: relative;
-    margin-block: 2px;
     cursor: pointer;
-    transition: all 0.2s ease;
+
+    position: relative;
+
+    margin-block: 2px;
     padding: ${token.paddingSM}px !important;
     border-radius: ${token.borderRadius}px;
+
+    transition: all 0.2s ease;
 
     &:hover {
       background: ${token.colorFillTertiary};
     }
   `,
   rightColumn: css`
-    flex: 1;
     overflow-y: auto;
-    padding: ${token.paddingSM}px;
     display: flex;
+    flex: 1;
     flex-direction: column;
+
+    padding: ${token.paddingSM}px;
   `,
   templateCard: css`
     cursor: pointer;
-    transition: all 0.2s ease;
     border: 1px solid ${token.colorBorderSecondary};
+    transition: all 0.2s ease;
 
     &:hover {
       background: ${token.colorFillTertiary};
     }
   `,
   templateList: css`
-    flex: 1;
     overflow-y: auto;
+    flex: 1;
     padding: ${token.paddingSM}px;
   `,
   title: css`
-    font-weight: 500;
     font-size: 14px;
+    font-weight: 500;
   `,
 }));
 

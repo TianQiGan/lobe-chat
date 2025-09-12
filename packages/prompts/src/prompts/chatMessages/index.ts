@@ -12,7 +12,7 @@ ${messages.map((m) => chatMessage(m)).join('\n')}
 
 export const groupSupervisorPrompts = (messages: ChatMessage[]) => {
   const formatMessage = (message: ChatMessage) => {
-    const author = message.role === 'user' ? 'user' : (message.agentId || 'assistant');
+    const author = message.role === 'user' ? 'user' : message.agentId || 'assistant';
     const targetAttr = message.targetId ? ` target="${message.targetId}"` : '';
     return `<message author="${author}"${targetAttr}>${message.content}</message>`;
   };
@@ -35,69 +35,80 @@ ${messages.map((m) => chatMessage(m)).join('\n')}
  * - For DM messages not involving the agent, content is replaced with "***"
  */
 export const filterMessagesForAgent = (messages: ChatMessage[], agentId: string): ChatMessage[] => {
-  return messages.map(message => {
-    // Always include system messages as-is
-    if (message.role === 'system') {
+  return messages
+    .filter((message) => {
+      // Exclude supervisor messages (messages with agentId="supervisor")
+      if (message.agentId === 'supervisor') {
+        return false;
+      }
+      return true;
+    })
+    .map((message) => {
+      // Always include system messages as-is
+      if (message.role === 'system') {
+        return message;
+      }
+
+      // For user messages, check DM targeting rules
+      if (message.role === 'user') {
+        // If no target specified, it's a group message - include it as-is
+        if (!message.targetId) {
+          return message;
+        }
+
+        // If the message is targeted to this agent, include it as-is
+        if (message.targetId === agentId) {
+          return message;
+        }
+
+        // Otherwise, it's a DM to another agent - replace content with "***"
+        return {
+          ...message,
+          content: '***',
+        };
+      }
+
+      // For assistant messages, check DM targeting rules
+      if (message.role === 'assistant') {
+        // If no target specified, it's a group message - include it as-is
+        if (!message.targetId) {
+          return message;
+        }
+
+        // If the agent is the target of the DM, include it as-is
+        if (message.targetId === agentId) {
+          return message;
+        }
+
+        // If the agent sent the message, include it as-is
+        if (message.agentId === agentId) {
+          return message;
+        }
+
+        // Otherwise, it's a DM not involving this agent - replace content with "***"
+        return {
+          ...message,
+          content: '***',
+        };
+      }
+
+      // Default: include the message as-is
       return message;
-    }
-
-    // For user messages, check DM targeting rules
-    if (message.role === 'user') {
-      // If no target specified, it's a group message - include it as-is
-      if (!message.targetId) {
-        return message;
-      }
-
-      // If the message is targeted to this agent, include it as-is
-      if (message.targetId === agentId) {
-        return message;
-      }
-
-      // Otherwise, it's a DM to another agent - replace content with "***"
-      return {
-        ...message,
-        content: '***',
-      };
-    }
-
-    // For assistant messages, check DM targeting rules
-    if (message.role === 'assistant') {
-      // If no target specified, it's a group message - include it as-is
-      if (!message.targetId) {
-        return message;
-      }
-
-      // If the agent is the target of the DM, include it as-is
-      if (message.targetId === agentId) {
-        return message;
-      }
-
-      // If the agent sent the message, include it as-is
-      if (message.agentId === agentId) {
-        return message;
-      }
-
-      // Otherwise, it's a DM not involving this agent - replace content with "***"
-      return {
-        ...message,
-        content: '***',
-      };
-    }
-
-    // Default: include the message as-is
-    return message;
-  });
+    });
 };
 
 /**
  * Consolidates group chat message history into a single formatted string
  * for use in system messages. Each message is formatted as "(AuthorName): content"
  */
-export const consolidateGroupChatHistory = (messages: ChatMessage[], agents: { id: string; title: string }[] = []) => {
+export const consolidateGroupChatHistory = (
+  messages: ChatMessage[],
+  agents: { id: string; title: string }[] = [],
+) => {
   if (messages.length === 0) return '';
 
   // Create a map for quick agent lookup
-  const agentMap = new Map(agents.map(agent => [agent.id, agent.title]));
+  const agentMap = new Map(agents.map((agent) => [agent.id, agent.title]));
 
   const formatMessage = (message: ChatMessage) => {
     let authorName: string;
@@ -115,7 +126,7 @@ export const consolidateGroupChatHistory = (messages: ChatMessage[], agents: { i
   };
 
   return messages
-    .filter(m => m.content && m.content.trim()) // Filter out empty messages
+    .filter((m) => m.content && m.content.trim()) // Filter out empty messages
     .map(formatMessage)
     .join('\n');
 };
