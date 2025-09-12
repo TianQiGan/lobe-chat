@@ -130,6 +130,158 @@
       "title": "Group Chat Usage Recommendations"
     },
     "groupMessage": "Welcome to group chat! Collaborate with multiple AI assistants in a shared conversation space.",
+    "groupTemplates": {
+      "analysis": {
+        "description": "Data-driven insights, in-depth research and analysis",
+        "members": [
+          {
+            "avatar": "📊",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "You are a data analyst skilled in processing and interpreting data, revealing patterns and trends through charts and statistical analysis.",
+            "title": "Data Analyst"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "You are a research expert responsible for information gathering and in-depth investigation, capable of comprehensive multi-dimensional analysis.",
+            "title": "Research Expert"
+          },
+          {
+            "avatar": "📈",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "You are a statistics expert proficient in various statistical methods and models, able to extract valuable business insights from data.",
+            "title": "Statistics Expert"
+          },
+          {
+            "avatar": "🧮",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "You are a quantitative analyst specializing in quantitative modeling and risk assessment, solving complex problems using mathematical methods.",
+            "title": "Quantitative Analyst"
+          }
+        ],
+        "title": "Analysis Team"
+      },
+      "brainstorm": {
+        "description": "Multi-perspective creative thinking, inspiring infinite possibilities",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "You are a creative director skilled at overseeing creative direction from a macro perspective, transforming abstract concepts into concrete, actionable creative plans.",
+            "title": "Creative Director"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "You are an innovation expert responsible for discovering novel solutions and breakthrough thinking, adept at thinking outside conventional frameworks.",
+            "title": "Innovation Expert"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "You are a design thinking specialist who approaches problems from user experience and visual presentation perspectives, emphasizing creative visualization.",
+            "title": "Design Thinking Specialist"
+          }
+        ],
+        "title": "Brainstorming Team"
+      },
+      "game": {
+        "description": "Enjoy various multiplayer text games, such as Werewolf and Undercover",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "You are a host skilled in organizing various multiplayer text games, capable of guiding players through the game.",
+            "title": "Game Host"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "You are a player skilled in participating in various multiplayer text games, able to play according to game rules.",
+            "title": "Game Player"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "You are a player skilled in participating in various multiplayer text games, able to play according to game rules.",
+            "title": "Game Player"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "You are a player skilled in participating in various multiplayer text games, able to play according to game rules.",
+            "title": "Game Player"
+          }
+        ],
+        "title": "Game Hall"
+      },
+      "planning": {
+        "description": "Strategic planning and project management, coordinating the big picture",
+        "members": [
+          {
+            "avatar": "📋",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "You are a project manager responsible for overall project planning, progress control, and resource coordination, ensuring timely and high-quality completion.",
+            "title": "Project Manager"
+          },
+          {
+            "avatar": "🎯",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "You are a strategy lead specializing in long-term strategic planning, analyzing market opportunities, setting goals, and defining implementation paths.",
+            "title": "Strategy Lead"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "You are a culinary R&D expert responsible for detailed execution planning, coordinating departmental resources, and ensuring plan feasibility.",
+            "title": "Culinary R&D Specialist"
+          }
+        ],
+        "title": "Culinary R&D Team"
+      },
+      "product": {
+        "description": "Product design and development, creating high-quality products",
+        "members": [
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "You are a designer skilled in designing various types of products, able to design according to product requirements.",
+            "title": "Designer"
+          },
+          {
+            "avatar": "🧑",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "You are a product manager responsible for product planning, design, development, and maintenance, ensuring product quality and user experience.",
+            "title": "Product Manager"
+          },
+          {
+            "avatar": "🧑‍💻",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "You are an experienced full-stack engineer skilled in developing various types of products, able to develop according to product requirements.",
+            "title": "Full-Stack Engineer"
+          }
+        ],
+        "title": "Product Development Team"
+      },
+      "writing": {
+        "description": "Content creation and editing, crafting high-quality copy",
+        "members": [
+          {
+            "avatar": "✍️",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "You are a content writer skilled in creating various writing styles, able to adjust writing style according to different scenarios and audiences.",
+            "title": "Content Writer"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "You are an editor responsible for proofreading, polishing, and optimizing text, ensuring accuracy, fluency, and professionalism.",
+            "title": "Editor"
+          }
+        ],
+        "title": "Writing Circle"
+      }
+    },
     "qa": {
       "q01": "What is LobeHub?",
       "q02": "What is {{appName}}?",

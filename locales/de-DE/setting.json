@@ -318,6 +318,10 @@
     "title": "Gruppenchat-Informationen"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Erlaube Mitgliedern, sich gegenseitig private Nachrichten zu senden",
+      "title": "Private Nachrichten erlauben"
+    },
     "maxResponseInRow": {
       "desc": "Wählen Sie, wie viele Nachrichten ein Mitglied hintereinander antworten kann. Setzen Sie auf 0, um diese Begrenzung zu deaktivieren.",
       "title": "Anzahl der aufeinanderfolgenden Antworten"

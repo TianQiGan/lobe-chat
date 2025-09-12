@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "Möchtest du wirklich die aktuellen Nachrichten löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
   "confirmRemoveChatGroupItemAlert": "Die Gruppenunterhaltung wird gelöscht, die Mitglieder bleiben davon unberührt. Bitte bestätigen Sie Ihre Aktion.",
   "confirmRemoveGroupItemAlert": "Sie sind dabei, diese Gruppe zu löschen. Nach der Löschung werden die Assistenten dieser Gruppe in die Standardliste verschoben. Bitte bestätigen Sie Ihre Aktion.",
+  "confirmRemoveGroupSuccess": "Gruppenchat erfolgreich gelöscht",
   "confirmRemoveSessionItemAlert": "Möchtest du diesen Assistenten wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
   "confirmRemoveSessionSuccess": "Hilfe wurde erfolgreich entfernt",
   "defaultAgent": "Standardassistent",
@@ -90,6 +91,17 @@
       "role": "Einstellungen"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Bestehende Assistenten auswählen...",
+    "createGroup": "Gruppenchat erstellen",
+    "groupMembers": "Diese Assistenten werden ebenfalls zu Ihrer Liste hinzugefügt",
+    "memberCount": "{{count}} Mitglieder",
+    "noMatchingTemplates": "Keine passenden Vorlagen",
+    "noSelectedTemplates": "Keine Vorlagen ausgewählt",
+    "noTemplates": "Keine Vorlagen verfügbar",
+    "searchTemplates": "Vorlagen durchsuchen...",
+    "title": "Gruppenchat erstellen"
+  },
   "hideForYou": "Private Nachrichten sind ausgeblendet. Bitte aktivieren Sie in den Einstellungen „Private Nachrichten anzeigen“, um sie zu sehen.",
   "history": {
     "title": "Der Assistent wird nur die letzten {{count}} Nachrichten speichern"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Mitglied hinzufügen",
+    "allMembers": "Alle Mitglieder",
     "createGroup": "Gruppenchat erstellen",
     "noAvailableAgents": "Keine verfügbaren Assistenten zum Einladen",
     "noSelectedAgents": "Noch keine Assistenten ausgewählt",

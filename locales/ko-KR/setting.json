@@ -318,6 +318,10 @@
     "title": "그룹 채팅 정보"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "구성원 간에 개인 메시지 전송 허용",
+      "title": "개인 메시지 허용"
+    },
     "maxResponseInRow": {
       "desc": "멤버가 연속으로 답변할 수 있는 메시지 수를 선택하세요. 0으로 설정하면 제한이 해제됩니다.",
       "title": "연속 답변 메시지 수"

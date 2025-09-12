@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "即將清空當前對話，清空後將無法找回，請確認你的操作",
   "confirmRemoveChatGroupItemAlert": "即將刪除該群聊，群聊成員不受影響，請確認你的操作",
   "confirmRemoveGroupItemAlert": "即將刪除此分組。刪除後，該分組中的助理將移至預設列表，請確認是否繼續。",
+  "confirmRemoveGroupSuccess": "群組刪除成功",
   "confirmRemoveSessionItemAlert": "即將刪除該助手，刪除後將無法找回，請確認你的操作",
   "confirmRemoveSessionSuccess": "助手刪除成功",
   "defaultAgent": "自定義助手",
@@ -90,6 +91,17 @@
       "role": "設定"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "選擇現有助理...",
+    "createGroup": "建立群組聊天",
+    "groupMembers": "這些助理也將被加入您的列表中",
+    "memberCount": "{{count}} 位成員",
+    "noMatchingTemplates": "沒有符合的範本",
+    "noSelectedTemplates": "未選擇範本",
+    "noTemplates": "沒有可用的範本",
+    "searchTemplates": "搜尋範本...",
+    "title": "建立群組聊天"
+  },
   "hideForYou": "私訊內容已經隱藏，請在設定中開啟【顯示私訊內容】以查看",
   "history": {
     "title": "助手將只記住最後{{count}}條消息"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "添加成員",
+    "allMembers": "所有成員",
     "createGroup": "建立群聊",
     "noAvailableAgents": "沒有可邀請的助理",
     "noSelectedAgents": "尚未選擇助理",

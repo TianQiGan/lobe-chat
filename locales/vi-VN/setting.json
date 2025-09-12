@@ -318,6 +318,10 @@
     "title": "Thông tin nhóm trò chuyện"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Cho phép thành viên gửi tin nhắn riêng tư cho nhau",
+      "title": "Cho phép tin nhắn riêng"
+    },
     "maxResponseInRow": {
       "desc": "Chọn số lượng tin nhắn thành viên có thể trả lời liên tiếp. Đặt là 0 để vô hiệu hóa giới hạn này.",
       "title": "Số tin nhắn trả lời liên tiếp"

@@ -318,6 +318,10 @@
     "title": "Informacje o czacie grupowym"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Pozwól członkom na wysyłanie prywatnych wiadomości",
+      "title": "Zezwól na prywatne wiadomości"
+    },
     "maxResponseInRow": {
       "desc": "Wybierz, ile wiadomości członek może odpowiedzieć z rzędu. Ustaw na 0, aby wyłączyć to ograniczenie.",
       "title": "Liczba kolejnych odpowiedzi"

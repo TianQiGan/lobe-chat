@@ -318,6 +318,10 @@
     "title": "群聊資訊"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "允許成員之間發送私訊",
+      "title": "允許私訊"
+    },
     "maxResponseInRow": {
       "desc": "選擇成員可以連續回覆多少條訊息。設定為 0 則禁用此限制。",
       "title": "連續回覆訊息數"

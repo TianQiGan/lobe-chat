@@ -130,6 +130,158 @@
       "title": "Empfehlungen zur Nutzung von Gruppenchats"
     },
     "groupMessage": "Willkommen im Gruppenchat! Kollaborieren Sie mit mehreren KI-Assistenten in einem gemeinsamen Gesprächsraum.",
+    "groupTemplates": {
+      "analysis": {
+        "description": "Datengetriebene Erkenntnisse, tiefgehende Forschung und Analyse",
+        "members": [
+          {
+            "avatar": "📊",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Du bist Datenanalyst, spezialisiert auf die Verarbeitung und Interpretation von Daten, enthüllst Muster und Trends durch Diagramme und statistische Analysen.",
+            "title": "Datenanalyst"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Du bist Forschungsexperte, zuständig für Informationssammlung und tiefgehende Untersuchungen, analysierst Probleme aus verschiedenen Perspektiven umfassend.",
+            "title": "Forschungsexperte"
+          },
+          {
+            "avatar": "📈",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Du bist Statistikexperte, versiert in verschiedenen statistischen Methoden und Modellen, extrahierst wertvolle geschäftliche Erkenntnisse aus Daten.",
+            "title": "Statistikexperte"
+          },
+          {
+            "avatar": "🧮",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Du bist quantitativer Analyst, spezialisiert auf quantitative Modellierung und Risikobewertung, löst komplexe Probleme mit mathematischen Methoden.",
+            "title": "Quantitativer Analyst"
+          }
+        ],
+        "title": "Analyse-Team"
+      },
+      "brainstorm": {
+        "description": "Kreatives Denken aus mehreren Blickwinkeln, unendliche Möglichkeiten entfesseln",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Du bist Kreativdirektor, meisterst die kreative Ausrichtung aus makroskopischer Sicht, verwandelst abstrakte Konzepte in konkrete, umsetzbare Ideen.",
+            "title": "Kreativdirektor"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Du bist Innovationsspezialist, findest neuartige Lösungen und bahnbrechende Denkansätze, denkst außerhalb gewohnter Rahmen.",
+            "title": "Innovationsspezialist"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Du bist Design-Thinking-Experte, betrachtest Probleme aus Nutzererlebnis- und visueller Perspektive, legst Wert auf kreative Visualisierung.",
+            "title": "Design-Thinking-Experte"
+          }
+        ],
+        "title": "Brainstorming-Team"
+      },
+      "game": {
+        "description": "Spiele verschiedene Mehrspieler-Textspiele wie Werwolf und Wer ist der Maulwurf",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Du bist Spielleiter, organisierst verschiedene Mehrspieler-Textspiele und leitest die Spieler durch das Spiel.",
+            "title": "Spielleiter"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Du bist Spieler, nimmst an verschiedenen Mehrspieler-Textspielen teil und spielst gemäß den Spielregeln.",
+            "title": "Spieler"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Du bist Spieler, nimmst an verschiedenen Mehrspieler-Textspielen teil und spielst gemäß den Spielregeln.",
+            "title": "Spieler"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Du bist Spieler, nimmst an verschiedenen Mehrspieler-Textspielen teil und spielst gemäß den Spielregeln.",
+            "title": "Spieler"
+          }
+        ],
+        "title": "Spielhalle"
+      },
+      "planning": {
+        "description": "Strategische Planung und Projektmanagement, Gesamtkoordination",
+        "members": [
+          {
+            "avatar": "📋",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Du bist Projektmanager, verantwortlich für Gesamtplanung, Fortschrittskontrolle und Ressourcenkoordination, stellst termingerechte und qualitativ hochwertige Projektergebnisse sicher.",
+            "title": "Koch"
+          },
+          {
+            "avatar": "🎯",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Du bist Strategieverantwortlicher, entwickelst langfristige Strategien, analysierst Marktchancen, definierst Ziele und Umsetzungswege.",
+            "title": "Einkaufsspezialist"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Du bist Experte für Lebensmittelentwicklung, erstellst detaillierte Ausführungspläne, koordinierst Ressourcen verschiedener Abteilungen, gewährleistest Umsetzbarkeit.",
+            "title": "Experte für Lebensmittelentwicklung"
+          }
+        ],
+        "title": "Lebensmittelentwicklungsteam"
+      },
+      "product": {
+        "description": "Produktdesign und -entwicklung, hochwertige Produkte schaffen",
+        "members": [
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Du bist Designer, spezialisiert auf die Gestaltung verschiedener Produkttypen, entwirfst entsprechend den Produktanforderungen.",
+            "title": "Designer"
+          },
+          {
+            "avatar": "🧑",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Du bist Produktmanager, verantwortlich für Planung, Design, Entwicklung und Wartung des Produkts, sicherst Qualität und Nutzererlebnis.",
+            "title": "Produktmanager"
+          },
+          {
+            "avatar": "🧑‍💻",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Du bist erfahrener Full-Stack-Entwickler, entwickelst verschiedene Produkttypen, setzt Produktanforderungen um.",
+            "title": "Full-Stack-Entwickler"
+          }
+        ],
+        "title": "Produktentwicklungsteam"
+      },
+      "writing": {
+        "description": "Inhaltserstellung und Redaktion, hochwertige Texte gestalten",
+        "members": [
+          {
+            "avatar": "✍️",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Du bist Content-Autor, spezialisiert auf verschiedene Textarten, passt Schreibstil an unterschiedliche Szenarien und Zielgruppen an.",
+            "title": "Content-Autor"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Du bist Redakteur, verantwortlich für Korrektur, Überarbeitung und Optimierung von Texten, sicherst Genauigkeit, Flüssigkeit und Professionalität.",
+            "title": "Redakteur"
+          }
+        ],
+        "title": "Schreibteam"
+      }
+    },
     "qa": {
       "q01": "Was ist LobeHub?",
       "q02": "Was ist {{appName}}?",

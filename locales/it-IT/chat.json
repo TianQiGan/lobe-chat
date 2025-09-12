@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "Stai per cancellare i messaggi attuali, questa operazione non potrà essere annullata. Confermi?",
   "confirmRemoveChatGroupItemAlert": "Stai per eliminare questa chat di gruppo, i membri del gruppo non saranno influenzati, conferma la tua azione",
   "confirmRemoveGroupItemAlert": "Stai per eliminare questo gruppo. Dopo l'eliminazione, gli assistenti contenuti in esso verranno spostati nell'elenco predefinito. Confermi l'operazione?",
+  "confirmRemoveGroupSuccess": "Gruppo eliminato con successo",
   "confirmRemoveSessionItemAlert": "Stai per rimuovere questo assistente, l'operazione non potrà essere annullata. Confermi?",
   "confirmRemoveSessionSuccess": "Session eliminata con successo",
   "defaultAgent": "Assistente predefinito",
@@ -90,6 +91,17 @@
       "role": "Impostazioni"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Seleziona assistenti esistenti...",
+    "createGroup": "Crea gruppo",
+    "groupMembers": "Questi assistenti saranno aggiunti anche alla tua lista",
+    "memberCount": "{{count}} membri",
+    "noMatchingTemplates": "Nessun modello corrispondente",
+    "noSelectedTemplates": "Nessun modello selezionato",
+    "noTemplates": "Nessun modello disponibile",
+    "searchTemplates": "Cerca modelli...",
+    "title": "Crea gruppo"
+  },
   "hideForYou": "Il contenuto del messaggio privato è stato nascosto, abilita 【Mostra contenuto messaggi privati】 nelle impostazioni per visualizzarlo",
   "history": {
     "title": "L'assistente ricorderà solo gli ultimi {{count}} messaggi"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Aggiungi membro",
+    "allMembers": "Tutti i membri",
     "createGroup": "Crea chat di gruppo",
     "noAvailableAgents": "Nessun assistente disponibile da invitare",
     "noSelectedAgents": "Nessun assistente selezionato",

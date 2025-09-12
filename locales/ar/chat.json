@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "سيتم مسح رسائل الجلسة الحالية قريبًا، وبمجرد المسح لن يمكن استعادتها، يرجى تأكيد الإجراء الخاص بك",
   "confirmRemoveChatGroupItemAlert": "سيتم حذف هذه المحادثة الجماعية، ولن يتأثر أعضاء المجموعة، يرجى تأكيد العملية الخاصة بك",
   "confirmRemoveGroupItemAlert": "سيتم حذف هذه المجموعة قريبًا. بعد الحذف، سيُنتقل المساعدون في هذه المجموعة إلى القائمة الافتراضية. يرجى تأكيد إجراء الحذف.",
+  "confirmRemoveGroupSuccess": "تم حذف الدردشة الجماعية بنجاح",
   "confirmRemoveSessionItemAlert": "سيتم حذف هذا المساعد قريبًا، وبمجرد الحذف لن يمكن استعادته، يرجى تأكيد الإجراء الخاص بك",
   "confirmRemoveSessionSuccess": "تم حذف المساعد بنجاح",
   "defaultAgent": "المساعد الافتراضي",
@@ -90,6 +91,17 @@
       "role": "الإعداد"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "اختر المساعدين الحاليين...",
+    "createGroup": "إنشاء دردشة جماعية",
+    "groupMembers": "سيتم أيضًا إضافة هؤلاء المساعدين إلى قائمتك",
+    "memberCount": "{{count}} عضو",
+    "noMatchingTemplates": "لا توجد قوالب مطابقة",
+    "noSelectedTemplates": "لم يتم اختيار أي قالب",
+    "noTemplates": "لا توجد قوالب متاحة",
+    "searchTemplates": "ابحث في القوالب...",
+    "title": "إنشاء دردشة جماعية"
+  },
   "hideForYou": "تم إخفاء محتوى الرسائل الخاصة، يرجى تفعيل خيار 【عرض محتوى الرسائل الخاصة】 في الإعدادات للعرض",
   "history": {
     "title": "سيتذكر المساعد آخر {{count}} رسالة فقط"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "إضافة عضو",
+    "allMembers": "جميع الأعضاء",
     "createGroup": "إنشاء محادثة جماعية",
     "noAvailableAgents": "لا يوجد مساعدين متاحين للدعوة",
     "noSelectedAgents": "لم يتم اختيار مساعدين بعد",

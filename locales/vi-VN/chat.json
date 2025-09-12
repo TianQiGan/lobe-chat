@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "Bạn sắp xóa tin nhắn hiện tại. Hành động này không thể hoàn tác, vui lòng xác nhận.",
   "confirmRemoveChatGroupItemAlert": "Bạn sắp xóa nhóm trò chuyện này, các thành viên trong nhóm sẽ không bị ảnh hưởng, vui lòng xác nhận thao tác của bạn",
   "confirmRemoveGroupItemAlert": "Bạn sắp xóa nhóm này. Sau khi xóa, các trợ lý trong nhóm sẽ được chuyển sang danh sách mặc định. Vui lòng xác nhận hành động của bạn.",
+  "confirmRemoveGroupSuccess": "Xóa nhóm trò chuyện thành công",
   "confirmRemoveSessionItemAlert": "Bạn sắp xóa trợ lý này. Hành động này không thể hoàn tác, vui lòng xác nhận.",
   "confirmRemoveSessionSuccess": "Xóa trợ lý thành công",
   "defaultAgent": "Trợ lý mặc định",
@@ -90,6 +91,17 @@
       "role": "Thiết lập"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Chọn trợ lý hiện có...",
+    "createGroup": "Tạo nhóm trò chuyện",
+    "groupMembers": "Những trợ lý này cũng sẽ được thêm vào danh sách của bạn",
+    "memberCount": "{{count}} thành viên",
+    "noMatchingTemplates": "Không có mẫu phù hợp",
+    "noSelectedTemplates": "Chưa chọn mẫu nào",
+    "noTemplates": "Không có mẫu nào khả dụng",
+    "searchTemplates": "Tìm kiếm mẫu...",
+    "title": "Tạo nhóm trò chuyện"
+  },
   "hideForYou": "Nội dung tin nhắn riêng tư đã bị ẩn, vui lòng bật 【Hiển thị nội dung tin nhắn riêng tư】 trong cài đặt để xem",
   "history": {
     "title": "Trợ lý sẽ chỉ nhớ {{count}} tin nhắn cuối cùng"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Thêm thành viên",
+    "allMembers": "Tất cả thành viên",
     "createGroup": "Tạo nhóm trò chuyện",
     "noAvailableAgents": "Không có trợ lý nào để mời",
     "noSelectedAgents": "Chưa chọn trợ lý nào",

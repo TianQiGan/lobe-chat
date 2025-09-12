@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "Estás a punto de borrar los mensajes de esta sesión. Una vez borrados, no se podrán recuperar. Por favor, confirma tu acción.",
   "confirmRemoveChatGroupItemAlert": "Se eliminará este chat grupal, los miembros del grupo no se verán afectados, por favor confirma tu acción",
   "confirmRemoveGroupItemAlert": "Estás a punto de eliminar este grupo. Una vez eliminado, los asistentes de este grupo se moverán a la lista predeterminada. Por favor, confirma tu acción",
+  "confirmRemoveGroupSuccess": "El grupo de chat se eliminó con éxito",
   "confirmRemoveSessionItemAlert": "Estás a punto de eliminar este asistente. Una vez eliminado, no se podrá recuperar. Por favor, confirma tu acción.",
   "confirmRemoveSessionSuccess": "Asistente eliminado con éxito",
   "defaultAgent": "Asistente predeterminado",
@@ -90,6 +91,17 @@
       "role": "Configuración"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Selecciona asistentes existentes...",
+    "createGroup": "Crear grupo de chat",
+    "groupMembers": "Estos asistentes también se agregarán a tu lista",
+    "memberCount": "{{count}} miembros",
+    "noMatchingTemplates": "No hay plantillas que coincidan",
+    "noSelectedTemplates": "No se seleccionaron plantillas",
+    "noTemplates": "No hay plantillas disponibles",
+    "searchTemplates": "Buscar plantillas...",
+    "title": "Crear grupo de chat"
+  },
   "hideForYou": "El contenido del mensaje privado está oculto, por favor activa 【Mostrar contenido de mensajes privados】 en la configuración para verlo",
   "history": {
     "title": "El asistente solo recordará los últimos {{count}} mensajes"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Agregar miembro",
+    "allMembers": "Todos los miembros",
     "createGroup": "Crear chat grupal",
     "noAvailableAgents": "No hay asistentes disponibles para invitar",
     "noSelectedAgents": "No se ha seleccionado ningún asistente",

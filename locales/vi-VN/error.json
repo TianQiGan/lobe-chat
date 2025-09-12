@@ -134,6 +134,9 @@
   "stt": {
     "responseError": "Yêu cầu dịch vụ thất bại, vui lòng kiểm tra cấu hình hoặc thử lại"
   },
+  "supervisor": {
+    "decisionFailed": "Người điều hành nhóm không thể hoạt động. Vui lòng kiểm tra cấu hình người điều hành của bạn, đảm bảo rằng mô hình, API Key và địa chỉ API đã được cấu hình chính xác."
+  },
   "testConnectionFailed": "Kiểm tra kết nối thất bại: {{error}}",
   "tts": {
     "responseError": "Yêu cầu dịch vụ thất bại, vui lòng kiểm tra cấu hình hoặc thử lại"

@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "Czy na pewno chcesz wyczyścić bieżącą rozmowę? Tej operacji nie można cofnąć.",
   "confirmRemoveChatGroupItemAlert": "Grupa czatu zostanie usunięta, członkowie grupy nie zostaną dotknięci, potwierdź swoją operację",
   "confirmRemoveGroupItemAlert": "Zaraz zostanie usunięta ta grupa. Po jej usunięciu asystenci z tej grupy zostaną przeniesieni do listy domyślnej. Potwierdź swoją operację",
+  "confirmRemoveGroupSuccess": "Grupa czatu została pomyślnie usunięta",
   "confirmRemoveSessionItemAlert": "Czy na pewno chcesz usunąć tego asystenta? Tej operacji nie można cofnąć.",
   "confirmRemoveSessionSuccess": "Sesja usunięta pomyślnie",
   "defaultAgent": "Domyślny asystent",
@@ -90,6 +91,17 @@
       "role": "Ustawienia"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Wybierz istniejących asystentów...",
+    "createGroup": "Utwórz grupę czatu",
+    "groupMembers": "Ci asystenci zostaną również dodani do Twojej listy",
+    "memberCount": "{{count}} członków",
+    "noMatchingTemplates": "Brak pasujących szablonów",
+    "noSelectedTemplates": "Nie wybrano szablonów",
+    "noTemplates": "Brak dostępnych szablonów",
+    "searchTemplates": "Szukaj szablonów...",
+    "title": "Utwórz grupę czatu"
+  },
   "hideForYou": "Treść prywatnej wiadomości została ukryta, włącz opcję 【Pokaż treść prywatnych wiadomości】 w ustawieniach, aby zobaczyć",
   "history": {
     "title": "Asystent zapamięta tylko ostatnie {{count}} wiadomości"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Dodaj członka",
+    "allMembers": "Wszyscy członkowie",
     "createGroup": "Utwórz grupę czatu",
     "noAvailableAgents": "Brak dostępnych asystentów do zaproszenia",
     "noSelectedAgents": "Nie wybrano jeszcze asystentów",

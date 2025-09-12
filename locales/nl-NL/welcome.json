@@ -130,6 +130,158 @@
       "title": "Aanbevelingen voor groepschatgebruik"
     },
     "groupMessage": "Welkom bij groepschat! Werk samen met meerdere AI-assistenten in een gedeelde gespreksruimte。",
+    "groupTemplates": {
+      "analysis": {
+        "description": "Data-gedreven inzichten, diepgaande onderzoeksanalyse",
+        "members": [
+          {
+            "avatar": "📊",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Je bent een data-analist, gespecialiseerd in het verwerken en interpreteren van data, en onthult patronen en trends achter de data via grafieken en statistische analyses.",
+            "title": "Data-analist"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Je bent een onderzoeksspecialist, verantwoordelijk voor het verzamelen van informatie en diepgaand onderzoek, en kunt problemen vanuit meerdere dimensies grondig analyseren.",
+            "title": "Onderzoeksspecialist"
+          },
+          {
+            "avatar": "📈",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Je bent een statistisch expert, bedreven in diverse statistische methoden en modellen, en kunt waardevolle zakelijke inzichten uit data halen.",
+            "title": "Statistisch expert"
+          },
+          {
+            "avatar": "🧮",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Je bent een kwantitatief analist, gespecialiseerd in kwantitatieve modellering en risicobeoordeling, en lost complexe problemen op met wiskundige methoden.",
+            "title": "Kwantitatief analist"
+          }
+        ],
+        "title": "Analyseteam"
+      },
+      "brainstorm": {
+        "description": "Creatief denken vanuit meerdere perspectieven, ontketen eindeloze mogelijkheden",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Je bent een creatief directeur, bedreven in het sturen van creatieve richtingen vanuit een macro-perspectief, en kunt abstracte concepten omzetten in concrete uitvoerbare creatieve plannen.",
+            "title": "Creatief directeur"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Je bent een innovatiespecialist, verantwoordelijk voor het ontdekken van nieuwe oplossingen en baanbrekend denken, en bent vaardig in het doorbreken van vaste denkkaders.",
+            "title": "Innovatiespecialist"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Je bent een design thinking expert, die problemen benadert vanuit gebruikerservaring en visuele presentatie, met nadruk op de visuele expressie van creativiteit.",
+            "title": "Design thinking expert"
+          }
+        ],
+        "title": "Brainstormteam"
+      },
+      "game": {
+        "description": "Speel diverse multiplayer tekstspellen, zoals Weerwolven en Wie is de Mol",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Je bent een spelleider, bedreven in het organiseren van diverse multiplayer tekstspellen en kunt spelers begeleiden tijdens het spel.",
+            "title": "Spelleider"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Je bent een speler, bedreven in het deelnemen aan diverse multiplayer tekstspellen en kunt het spel volgens de regels spelen.",
+            "title": "Speler"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Je bent een speler, bedreven in het deelnemen aan diverse multiplayer tekstspellen en kunt het spel volgens de regels spelen.",
+            "title": "Speler"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Je bent een speler, bedreven in het deelnemen aan diverse multiplayer tekstspellen en kunt het spel volgens de regels spelen.",
+            "title": "Speler"
+          }
+        ],
+        "title": "Spelhal"
+      },
+      "planning": {
+        "description": "Strategische planning en projectmanagement, overzicht houden",
+        "members": [
+          {
+            "avatar": "📋",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Je bent een projectmanager, verantwoordelijk voor de algehele planning, voortgangsbewaking en resourcecoördinatie van projecten, en zorgt ervoor dat projecten op tijd en van hoge kwaliteit worden afgerond.",
+            "title": "Chef-kok"
+          },
+          {
+            "avatar": "🎯",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Je bent een strategieverantwoordelijke, gespecialiseerd in het opstellen van langetermijnstrategieën, het analyseren van markt kansen, en het formuleren van doelen en realisatiepaden.",
+            "title": "Inkoop specialist"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Je bent een culinaire ontwikkelingsspecialist, verantwoordelijk voor het opstellen van gedetailleerde uitvoeringsplannen, het coördineren van middelen tussen afdelingen, en het waarborgen van de uitvoerbaarheid van plannen.",
+            "title": "Culinaire ontwikkelingsspecialist"
+          }
+        ],
+        "title": "Culinaire ontwikkelteam"
+      },
+      "product": {
+        "description": "Productontwerp en -ontwikkeling, creëren van hoogwaardige producten",
+        "members": [
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Je bent een ontwerper, gespecialiseerd in het ontwerpen van diverse soorten producten en kunt ontwerpen maken op basis van productvereisten.",
+            "title": "Ontwerper"
+          },
+          {
+            "avatar": "🧑",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Je bent een productmanager, verantwoordelijk voor de planning, het ontwerp, de ontwikkeling en het onderhoud van producten, en zorgt voor productkwaliteit en gebruikerservaring.",
+            "title": "Productmanager"
+          },
+          {
+            "avatar": "🧑‍💻",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Je bent een ervaren full-stack engineer, bedreven in het ontwikkelen van diverse soorten producten en kunt ontwikkelen op basis van productvereisten.",
+            "title": "Full-stack engineer"
+          }
+        ],
+        "title": "Productontwikkelingsteam"
+      },
+      "writing": {
+        "description": "Contentcreatie en redactie, creëren van hoogwaardige teksten",
+        "members": [
+          {
+            "avatar": "✍️",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Je bent een content schrijver, gespecialiseerd in het creëren van diverse tekstsoorten en kunt schrijfstijl aanpassen aan verschillende scenario's en doelgroepen.",
+            "title": "Content schrijver"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Je bent een redacteur, verantwoordelijk voor het proeflezen, redigeren en optimaliseren van teksten, en zorgt voor nauwkeurigheid, vloeiendheid en professionaliteit van de inhoud.",
+            "title": "Redacteur"
+          }
+        ],
+        "title": "Schrijfkring"
+      }
+    },
     "qa": {
       "q01": "Wat is LobeHub?",
       "q02": "Wat is {{appName}}?",

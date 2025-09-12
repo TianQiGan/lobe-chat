@@ -318,6 +318,10 @@
     "title": "Informações do Grupo"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Permitir que os membros enviem mensagens privadas entre si",
+      "title": "Permitir mensagens privadas"
+    },
     "maxResponseInRow": {
       "desc": "Escolha quantas mensagens um membro pode responder consecutivamente. Defina como 0 para desativar essa limitação.",
       "title": "Número de Respostas Consecutivas"

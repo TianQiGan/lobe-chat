@@ -130,6 +130,158 @@
       "title": "Grup Sohbeti Kullanım Önerileri"
     },
     "groupMessage": "Grup sohbetine hoş geldiniz! Paylaşılan bir konuşma alanında birden fazla yapay zeka asistanıyla işbirliği yapın。",
+    "groupTemplates": {
+      "analysis": {
+        "description": "Veri odaklı içgörüler, derinlemesine araştırma ve analiz",
+        "members": [
+          {
+            "avatar": "📊",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Sen bir veri analistisin, verileri işleme ve yorumlama konusunda uzmansın, grafikler ve istatistiksel analizlerle verilerin ardındaki düzenleri ve trendleri ortaya çıkarırsın.",
+            "title": "Veri Analisti"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Sen bir araştırma uzmanısın, bilgi toplama ve derinlemesine araştırma yapmaktan sorumlusun, sorunları çok boyutlu olarak kapsamlı bir şekilde analiz edebilirsin.",
+            "title": "Araştırma Uzmanı"
+          },
+          {
+            "avatar": "📈",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Sen bir istatistik uzmanısın, çeşitli istatistik yöntemleri ve modellerinde uzmansın, verilerden değerli ticari içgörüler çıkarabilirsin.",
+            "title": "İstatistik Uzmanı"
+          },
+          {
+            "avatar": "🧮",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Sen bir nicel analistsin, nicel modelleme ve risk değerlendirmesi yaparsın, karmaşık problemleri matematiksel yöntemlerle çözersin.",
+            "title": "Nicel Analist"
+          }
+        ],
+        "title": "Analiz Ekibi"
+      },
+      "brainstorm": {
+        "description": "Çoklu bakış açısıyla yaratıcı düşünce, sonsuz olasılıkları tetikle",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Sen bir yaratıcı yönetmensin, yaratıcı yönü makro açıdan kontrol etmede uzmansın, soyut kavramları somut ve uygulanabilir yaratıcı çözümlere dönüştürebilirsin.",
+            "title": "Yaratıcı Yönetmen"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Sen bir yenilik uzmanısın, yeni çözümler ve çığır açan düşünceler keşfetmekle sorumlusun, kalıpların dışına çıkarak düşünme becerisine sahipsin.",
+            "title": "Yenilik Uzmanı"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Sen bir tasarım düşüncesi uzmanısın, kullanıcı deneyimi ve görsel sunum açısından düşünürsün, yaratıcılığın görselleştirilmesine önem verirsin.",
+            "title": "Tasarım Düşüncesi Uzmanı"
+          }
+        ],
+        "title": "Beyin Fırtınası Takımı"
+      },
+      "game": {
+        "description": "Çeşitli çok oyunculu metin oyunlarının keyfini çıkar, örneğin Kurt Adam ve Kim Casus",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Sen bir oyun sunucususun, çeşitli çok oyunculu metin oyunlarını organize etmekte uzmansın, oyuncuları oyuna yönlendirebilirsin.",
+            "title": "Oyun Sunucusu"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Sen bir oyuncusun, çeşitli çok oyunculu metin oyunlarına katılmakta uzmansın, oyun kurallarına göre oynayabilirsin.",
+            "title": "Oyuncu"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Sen bir oyuncusun, çeşitli çok oyunculu metin oyunlarına katılmakta uzmansın, oyun kurallarına göre oynayabilirsin.",
+            "title": "Oyuncu"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Sen bir oyuncusun, çeşitli çok oyunculu metin oyunlarına katılmakta uzmansın, oyun kurallarına göre oynayabilirsin.",
+            "title": "Oyuncu"
+          }
+        ],
+        "title": "Oyun Salonu"
+      },
+      "planning": {
+        "description": "Stratejik planlama ve proje yönetimi, genel durumu koordine etme",
+        "members": [
+          {
+            "avatar": "📋",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Sen bir proje yöneticisisin, projenin genel planlaması, ilerleme kontrolü ve kaynak koordinasyonundan sorumlusun, projenin zamanında ve yüksek kalitede tamamlanmasını sağlarsın.",
+            "title": "Şef"
+          },
+          {
+            "avatar": "🎯",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Sen bir strateji sorumlususun, uzun vadeli stratejik planlar yapar, pazar fırsatlarını analiz eder, hedefler ve gerçekleştirme yolları belirlersin.",
+            "title": "Malzeme Tedarik Uzmanı"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Sen bir gastronomi araştırma ve geliştirme uzmanısın, detaylı uygulama planları yapar, departmanlar arası kaynakları koordine eder, planların uygulanabilirliğini sağlarsın.",
+            "title": "Gastronomi Ar-Ge Uzmanı"
+          }
+        ],
+        "title": "Gastronomi Ar-Ge Takımı"
+      },
+      "product": {
+        "description": "Ürün tasarımı ve geliştirme, kaliteli ürünler yaratma",
+        "members": [
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Sen bir tasarımcısın, çeşitli ürün türlerini tasarlamada uzmansın, ürün gereksinimlerine göre tasarım yapabilirsin.",
+            "title": "Tasarımcı"
+          },
+          {
+            "avatar": "🧑",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Sen bir ürün yöneticisisin, ürünün planlaması, tasarımı, geliştirilmesi ve bakımından sorumlusun, ürün kalitesi ve kullanıcı deneyimini sağlarsın.",
+            "title": "Ürün Yöneticisi"
+          },
+          {
+            "avatar": "🧑‍💻",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Sen deneyimli bir tam yığın mühendisisin, çeşitli ürün türlerini geliştirmede uzmansın, ürün gereksinimlerine göre geliştirme yapabilirsin.",
+            "title": "Tam Yığın Mühendis"
+          }
+        ],
+        "title": "Ürün Ar-Ge Takımı"
+      },
+      "writing": {
+        "description": "İçerik oluşturma ve düzenleme, kaliteli metinler yaratma",
+        "members": [
+          {
+            "avatar": "✍️",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Sen bir içerik yazarıyısın, çeşitli yazı türlerinde içerik oluşturmakta uzmansın, farklı senaryolara ve hedef kitlelere göre yazım stilini ayarlayabilirsin.",
+            "title": "İçerik Yazarı"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Sen bir editörsün, metinlerin düzeltme, parlatma ve optimizasyonundan sorumlusun, içeriğin doğruluğunu, akıcılığını ve profesyonelliğini sağlarsın.",
+            "title": "Editör"
+          }
+        ],
+        "title": "Yazım Çemberi"
+      }
+    },
     "qa": {
       "q01": "LobeHub nedir?",
       "q02": "{{appName}} nedir?",

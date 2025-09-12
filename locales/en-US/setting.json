@@ -318,6 +318,10 @@
     "title": "Group Chat Information"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Allow members to send direct messages to each other",
+      "title": "Allow Direct Messages"
+    },
     "maxResponseInRow": {
       "desc": "Select how many consecutive messages a member can reply with. Set to 0 to disable this limit.",
       "title": "Consecutive Reply Count"

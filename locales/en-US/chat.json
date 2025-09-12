@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "You are about to clear the current session messages. Once cleared, they cannot be retrieved. Please confirm your action.",
   "confirmRemoveChatGroupItemAlert": "You are about to delete this group chat. Group members will not be affected. Please confirm your action.",
   "confirmRemoveGroupItemAlert": "You are about to delete this group. After deletion, its assistants will be moved to the default list. Please confirm your action.",
+  "confirmRemoveGroupSuccess": "Group chat deleted successfully",
   "confirmRemoveSessionItemAlert": "You are about to delete this assistant. Once deleted, it cannot be retrieved. Please confirm your action.",
   "confirmRemoveSessionSuccess": "Assistant removed successfully",
   "defaultAgent": "Default Assistant",
@@ -90,6 +91,17 @@
       "role": "Settings"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Select existing assistants...",
+    "createGroup": "Create Group Chat",
+    "groupMembers": "These assistants will also be added to your list",
+    "memberCount": "{{count}} members",
+    "noMatchingTemplates": "No matching templates",
+    "noSelectedTemplates": "No templates selected",
+    "noTemplates": "No templates available",
+    "searchTemplates": "Search templates...",
+    "title": "Create Group Chat"
+  },
   "hideForYou": "Direct message content is hidden. Please enable 'Show Direct Message Content' in settings to view.",
   "history": {
     "title": "The assistant will only remember the last {{count}} messages."
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Add Member",
+    "allMembers": "All members",
     "createGroup": "Create Group Chat",
     "noAvailableAgents": "No assistants available to invite",
     "noSelectedAgents": "No assistants selected yet",

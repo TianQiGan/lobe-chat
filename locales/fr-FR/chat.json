@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "Vous êtes sur le point d'effacer les messages de cette session. Cette action est irréversible. Veuillez confirmer.",
   "confirmRemoveChatGroupItemAlert": "Vous êtes sur le point de supprimer ce groupe de discussion, les membres du groupe ne seront pas affectés, veuillez confirmer votre action",
   "confirmRemoveGroupItemAlert": "Vous êtes sur le point de supprimer ce groupe. Après la suppression, les assistants de ce groupe seront déplacés vers la liste par défaut. Veuillez confirmer votre action.",
+  "confirmRemoveGroupSuccess": "Suppression du groupe réussie",
   "confirmRemoveSessionItemAlert": "Vous êtes sur le point de supprimer cet agent. Cette action est irréversible. Veuillez confirmer.",
   "confirmRemoveSessionSuccess": "Agent supprimé avec succès",
   "defaultAgent": "Agent par défaut",
@@ -90,6 +91,17 @@
       "role": "Paramètres"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "Choisir des assistants existants...",
+    "createGroup": "Créer un groupe",
+    "groupMembers": "Ces assistants seront également ajoutés à votre liste",
+    "memberCount": "{{count}} membres",
+    "noMatchingTemplates": "Aucun modèle correspondant",
+    "noSelectedTemplates": "Aucun modèle sélectionné",
+    "noTemplates": "Aucun modèle disponible",
+    "searchTemplates": "Rechercher des modèles...",
+    "title": "Créer un groupe"
+  },
   "hideForYou": "Le contenu du message privé est caché, veuillez activer « Afficher le contenu des messages privés » dans les paramètres pour le voir",
   "history": {
     "title": "L'assistant ne se souviendra que des {{count}} derniers messages"
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "Ajouter un membre",
+    "allMembers": "Tous les membres",
     "createGroup": "Créer un groupe de discussion",
     "noAvailableAgents": "Aucun assistant disponible à inviter",
     "noSelectedAgents": "Aucun assistant sélectionné",

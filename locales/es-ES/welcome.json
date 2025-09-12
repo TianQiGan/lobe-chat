@@ -130,6 +130,158 @@
       "title": "Recomendaciones para el uso de chats grupales"
     },
     "groupMessage": "¡Bienvenidos al chat grupal! Colabora con múltiples asistentes de IA en un espacio de conversación compartido.",
+    "groupTemplates": {
+      "analysis": {
+        "description": "Perspectivas impulsadas por datos, análisis en profundidad",
+        "members": [
+          {
+            "avatar": "📊",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Eres un analista de datos, experto en manejar e interpretar datos, revelando patrones y tendencias a través de gráficos y análisis estadísticos.",
+            "title": "Analista de datos"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Eres un experto en investigación, encargado de la recopilación de información y estudios profundos, capaz de analizar problemas desde múltiples dimensiones.",
+            "title": "Experto en investigación"
+          },
+          {
+            "avatar": "📈",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Eres un experto en estadística, dominando diversos métodos y modelos estadísticos, capaz de extraer valiosos insights comerciales de los datos.",
+            "title": "Experto en estadística"
+          },
+          {
+            "avatar": "🧮",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Eres un analista cuantitativo, especializado en modelado cuantitativo y evaluación de riesgos, resolviendo problemas complejos mediante métodos matemáticos.",
+            "title": "Analista cuantitativo"
+          }
+        ],
+        "title": "Equipo de análisis"
+      },
+      "brainstorm": {
+        "description": "Pensamiento creativo desde múltiples perspectivas, estimulando posibilidades infinitas",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Eres un director creativo, experto en controlar la dirección creativa desde una perspectiva macro, capaz de transformar conceptos abstractos en planes creativos concretos y ejecutables.",
+            "title": "Director creativo"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Eres un experto en innovación, encargado de descubrir soluciones novedosas y pensamientos disruptivos, hábil para pensar fuera de los marcos convencionales.",
+            "title": "Experto en innovación"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Eres un especialista en pensamiento de diseño, abordando problemas desde la experiencia del usuario y la presentación visual, enfocándote en la expresión visual de la creatividad.",
+            "title": "Especialista en diseño"
+          }
+        ],
+        "title": "Equipo de lluvia de ideas"
+      },
+      "game": {
+        "description": "Disfruta de varios juegos de texto multijugador, como Hombre Lobo y Quién es el impostor",
+        "members": [
+          {
+            "avatar": "🧠",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Eres un anfitrión, experto en organizar diversos juegos de texto multijugador, capaz de guiar a los jugadores durante el juego.",
+            "title": "Anfitrión de juegos"
+          },
+          {
+            "avatar": "🧑‍🔬",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Eres un jugador, experto en participar en varios juegos de texto multijugador, capaz de jugar según las reglas del juego.",
+            "title": "Jugador"
+          },
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Eres un jugador, experto en participar en varios juegos de texto multijugador, capaz de jugar según las reglas del juego.",
+            "title": "Jugador"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Eres un jugador, experto en participar en varios juegos de texto multijugador, capaz de jugar según las reglas del juego.",
+            "title": "Jugador"
+          }
+        ],
+        "title": "Sala de juegos"
+      },
+      "planning": {
+        "description": "Planificación estratégica y gestión de proyectos, coordinando el panorama general",
+        "members": [
+          {
+            "avatar": "📋",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Eres un gerente de proyecto, responsable de la planificación general, control de progreso y coordinación de recursos para asegurar la finalización puntual y de alta calidad del proyecto.",
+            "title": "Chef"
+          },
+          {
+            "avatar": "🎯",
+            "backgroundColor": "#FFF7E8",
+            "systemRole": "Eres un responsable de estrategia, especializado en formular planes estratégicos a largo plazo, analizar oportunidades de mercado, establecer objetivos y rutas para alcanzarlos.",
+            "title": "Especialista en compras de ingredientes"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#F0F8FF",
+            "systemRole": "Eres un experto en desarrollo culinario, encargado de elaborar planes detallados de ejecución, coordinar recursos entre departamentos y asegurar la viabilidad del plan.",
+            "title": "Experto en desarrollo culinario"
+          }
+        ],
+        "title": "Equipo de desarrollo culinario"
+      },
+      "product": {
+        "description": "Diseño y desarrollo de productos, creando productos de alta calidad",
+        "members": [
+          {
+            "avatar": "🎨",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Eres un diseñador, experto en diseñar diversos tipos de productos, capaz de diseñar según los requisitos del producto.",
+            "title": "Diseñador"
+          },
+          {
+            "avatar": "🧑",
+            "backgroundColor": "#E8F5FF",
+            "systemRole": "Eres un gerente de producto, responsable de la planificación, diseño, desarrollo y mantenimiento del producto, asegurando la calidad y experiencia del usuario.",
+            "title": "Gerente de producto"
+          },
+          {
+            "avatar": "🧑‍💻",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Eres un ingeniero full stack experimentado, experto en desarrollar diversos tipos de productos, capaz de desarrollar según los requisitos del producto.",
+            "title": "Ingeniero full stack"
+          }
+        ],
+        "title": "Equipo de desarrollo de productos"
+      },
+      "writing": {
+        "description": "Creación y edición de contenido, produciendo textos de alta calidad",
+        "members": [
+          {
+            "avatar": "✍️",
+            "backgroundColor": "#F6E8FF",
+            "systemRole": "Eres un redactor de contenido, experto en crear contenidos de diversos géneros, capaz de ajustar el estilo de escritura según diferentes escenarios y audiencias.",
+            "title": "Redactor de contenido"
+          },
+          {
+            "avatar": "🧑‍🎨",
+            "backgroundColor": "#E8F8F5",
+            "systemRole": "Eres un editor, responsable de la corrección, pulido y optimización de textos, asegurando la precisión, fluidez y profesionalismo del contenido.",
+            "title": "Editor"
+          }
+        ],
+        "title": "Círculo de escritura"
+      }
+    },
     "qa": {
       "q01": "¿Qué es LobeHub?",
       "q02": "¿Qué es {{appName}}?",

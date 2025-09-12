@@ -318,6 +318,10 @@
     "title": "Groepschatinformatie"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Sta leden toe privéberichten naar elkaar te sturen",
+      "title": "Privéberichten toestaan"
+    },
     "maxResponseInRow": {
       "desc": "Kies hoeveel berichten een lid achter elkaar kan beantwoorden. Stel in op 0 om deze beperking uit te schakelen.",
       "title": "Aantal opeenvolgende antwoorden"

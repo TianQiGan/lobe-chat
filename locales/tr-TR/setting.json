@@ -318,6 +318,10 @@
     "title": "Grup Sohbeti Bilgisi"
   },
   "settingGroupChat": {
+    "allowDM": {
+      "desc": "Üyelerin birbirlerine özel mesaj göndermesine izin ver",
+      "title": "Özel Mesaja İzin Ver"
+    },
     "maxResponseInRow": {
       "desc": "Üyelerin kaç mesajı ardışık olarak yanıtlayabileceğini seçin. 0 olarak ayarlanırsa bu kısıtlama devre dışı bırakılır.",
       "title": "Ardışık Yanıt Mesaj Sayısı"

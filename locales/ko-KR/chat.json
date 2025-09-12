@@ -23,6 +23,7 @@
   "confirmClearCurrentMessages": "현재 대화를 지우시면 되돌릴 수 없습니다. 작업을 확인하시겠습니까?",
   "confirmRemoveChatGroupItemAlert": "이 그룹 채팅을 삭제하려고 합니다. 그룹 채팅 멤버는 영향을 받지 않습니다. 작업을 확인해 주세요.",
   "confirmRemoveGroupItemAlert": "해당 그룹을 삭제하려고 합니다. 삭제하면 해당 그룹의 어시스턴트가 기본 목록으로 이동합니다. 계속 진행하시겠습니까?",
+  "confirmRemoveGroupSuccess": "그룹 채팅이 성공적으로 삭제되었습니다",
   "confirmRemoveSessionItemAlert": "이 도우미를 삭제하시면 되돌릴 수 없습니다. 작업을 확인하시겠습니까?",
   "confirmRemoveSessionSuccess": "도우미가 성공적으로 삭제되었습니다",
   "defaultAgent": "기본 도우미",
@@ -90,6 +91,17 @@
       "role": "설정"
     }
   },
+  "groupWizard": {
+    "chooseMembers": "기존 도우미 선택...",
+    "createGroup": "그룹 채팅 생성",
+    "groupMembers": "이 도우미들도 귀하의 목록에 추가됩니다",
+    "memberCount": "{{count}}명 멤버",
+    "noMatchingTemplates": "일치하는 템플릿이 없습니다",
+    "noSelectedTemplates": "선택된 템플릿이 없습니다",
+    "noTemplates": "사용 가능한 템플릿이 없습니다",
+    "searchTemplates": "템플릿 검색...",
+    "title": "그룹 채팅 생성"
+  },
   "hideForYou": "개인 메시지 내용이 숨겨져 있습니다. 설정에서 【개인 메시지 내용 표시】를 켜서 확인하세요.",
   "history": {
     "title": "도우미는 마지막 {{count}}개의 메시지만 기억합니다."
@@ -138,6 +150,7 @@
   },
   "memberSelection": {
     "addMember": "멤버 추가",
+    "allMembers": "전체 멤버",
     "createGroup": "그룹 채팅 생성",
     "noAvailableAgents": "초대할 보조자가 없습니다",
     "noSelectedAgents": "아직 보조자를 선택하지 않았습니다",
