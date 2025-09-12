@@ -175,6 +175,7 @@ export interface ChatGroupChatAction {
     groupId: string,
     agentId: string,
     targetId?: string,
+    instruction?: string,
   ) => Promise<void>;
 
   /**
@@ -361,12 +362,17 @@ export const chatAiGroupChat: StateCreator<
             });
           }
 
-          await internal_processAgentMessage(groupId, decision.id, decision.target);
+          await internal_processAgentMessage(
+            groupId,
+            decision.id,
+            decision.target,
+            decision.instruction,
+          );
         }
       } else {
         // Process agents in parallel for natural response order
         const responsePromises = sortedDecisions.map((decision) =>
-          internal_processAgentMessage(groupId, decision.id, decision.target),
+          internal_processAgentMessage(groupId, decision.id, decision.target, decision.instruction),
         );
         await Promise.all(responsePromises);
       }
@@ -388,7 +394,12 @@ export const chatAiGroupChat: StateCreator<
   },
 
   // For group member responsing
-  internal_processAgentMessage: async (groupId: string, agentId: string, targetId?: string) => {
+  internal_processAgentMessage: async (
+    groupId: string,
+    agentId: string,
+    targetId?: string,
+    instruction?: string,
+  ) => {
     const {
       messagesMap,
       internal_createMessage,
@@ -476,7 +487,7 @@ export const chatAiGroupChat: StateCreator<
       const userMessage: ChatMessage = {
         id: 'group-user',
         role: 'user',
-        content: buildAgentResponsePrompt({ targetId }),
+        content: buildAgentResponsePrompt({ targetId, instruction }),
         createdAt: Date.now(),
         updatedAt: Date.now(),
         meta: {},

@@ -6,8 +6,11 @@ import { ChatMessage } from '@/types/message';
 import { GroupMemberWithAgent } from '@/types/session';
 
 export interface SupervisorDecision {
-  id: string; // agent ID who should respond
-  target?: string; // target agent ID or "user" for DM, omit for group message
+  id: string; 
+  // target agent ID or "user" for DM, omit for group message
+  instruction?: string; 
+  // agent ID who should respond
+  target?: string; // optional instruction from supervisor to the agent
 }
 
 export type SupervisorDecisionList = SupervisorDecision[]; // Empty array = stop conversation
@@ -144,6 +147,7 @@ export class GroupChatSupervisor {
         )
         .map((item: any) => ({
           id: item.id,
+          instruction: item.instruction || undefined,
           target: item.target || undefined,
         }));
 

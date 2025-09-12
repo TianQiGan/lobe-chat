@@ -118,14 +118,16 @@ Rules:
 - Return an array of objects where each object has an "id" field for the agent who should respond
 - If a response should be a direct message to a specific member, include a "target" field with the target member ID or "user"
 - If no "target" field is provided, the response will be a group message visible to everyone
+- You can optionally include an "instruction" field to give specific guidance to the agent about what they should focus on or how they should respond
 - If the conversation seems complete, or no one needs reply, return empty array []
 - Your goal is to make the conversation as natural as possible. For example, if user DM to an agent, the agent is likely to respond to the user privately too
 - Return ONLY a JSON array of objects, nothing else
 
 Examples: 
 - Group responses: [{"id": "agt_01"}]
+- With instructions: [{"id": "agt_01", "instruction": "Outline the main points from the article"}]
 - DM responses: [{"id": "agt_01", "target": "agt_02"}, {"id": "agt_04", "target": "user"}]
-- Mixed responses: [{"id": "agt_01"}, {"id": "agt_02", "target": "user"}]
+- Mixed responses: [{"id": "agt_01"}, {"id": "agt_02", "target": "user", "instruction": "Provide a summary"}]
 - Stop conversation: []
 
 Now return an array of objects where each object has an "id" field for the agent who should respond.
@@ -138,10 +140,17 @@ Now return an array of objects where each object has an "id" field for the agent
  * Build the prompt for agents to respond in group chat context
  * This is the most impressive prompt since it's the last message
  */
-export const buildAgentResponsePrompt = ({ targetId }: { targetId?: string }): string => {
+export const buildAgentResponsePrompt = ({
+  targetId,
+  instruction,
+}: {
+  instruction?: string;
+  targetId?: string;
+}): string => {
   const targetText = targetId ? targetId : 'the group publicly';
+  const instructionText = instruction ? `\n\nSupervisor instruction: ${instruction}` : '';
 
-  return `Now it's your turn to respond. You are sending message to ${targetText}. Please respond as this agent would, considering the full conversation history provided above. Directly return the message content, no other text. You do not need add author name or anything else.`;
+  return `Now it's your turn to respond. You are sending message to ${targetText}. Please respond as this agent would, considering the full conversation history provided above.${instructionText} Directly return the message content, no other text. You do not need add author name or anything else.`;
 };
 
 export const groupChatPrompts = {
