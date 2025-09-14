@@ -299,7 +299,8 @@ export const useSendGroupMessage = () => {
       generating: generating || isCreatingMessage,
       send: handleSend,
       stop,
+      updateInputMessage,
     }),
-    [canNotSend, generating, isCreatingMessage, handleSend, stop],
+    [canNotSend, generating, isCreatingMessage, handleSend, stop, updateInputMessage],
   );
 };
