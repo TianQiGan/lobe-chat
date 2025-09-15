@@ -24,6 +24,7 @@ import { sessions } from './session';
 import { threads, topics } from './topic';
 import { users } from './user';
 import { chatGroups } from './chatGroup';
+import { messageGroups } from './messageGroup';
 
 // @ts-ignore
 export const messages = pgTable(
@@ -68,6 +69,9 @@ export const messages = pgTable(
     groupId: text('group_id').references(() => chatGroups.id, { onDelete: 'set null' }),
     // targetId can be an agent ID, "user", or null - no FK constraint
     targetId: text('target_id'),
+
+    // used for multi-model parallel
+    messageGroupId: text('message_group_id').references(() => messageGroups.id, { onDelete: 'cascade' }),
     ...timestamps,
   },
   (table) => ({
