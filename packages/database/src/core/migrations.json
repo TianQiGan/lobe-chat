@@ -587,5 +587,20 @@
     "bps": true,
     "folderMillis": 1757902833213,
     "hash": "7f76a42dcaae9ca7de30a6eec432a3b52e64fa44b31828e3318d8b815f396624"
+  },
+  {
+    "sql": [
+      "CREATE TABLE \"message_groups\" (\n\t\"id\" text PRIMARY KEY NOT NULL,\n\t\"topic_id\" text,\n\t\"user_id\" text NOT NULL,\n\t\"parent_group_id\" text,\n\t\"user_message_id\" text,\n\t\"models\" jsonb,\n\t\"providers\" jsonb,\n\t\"title\" text,\n\t\"description\" text,\n\t\"client_id\" text,\n\t\"accessed_at\" timestamp with time zone DEFAULT now() NOT NULL,\n\t\"created_at\" timestamp with time zone DEFAULT now() NOT NULL,\n\t\"updated_at\" timestamp with time zone DEFAULT now() NOT NULL\n);\n",
+      "\nALTER TABLE \"messages\" ADD COLUMN \"message_group_id\" text;",
+      "\nALTER TABLE \"message_groups\" ADD CONSTRAINT \"message_groups_topic_id_topics_id_fk\" FOREIGN KEY (\"topic_id\") REFERENCES \"public\".\"topics\"(\"id\") ON DELETE cascade ON UPDATE no action;",
+      "\nALTER TABLE \"message_groups\" ADD CONSTRAINT \"message_groups_user_id_users_id_fk\" FOREIGN KEY (\"user_id\") REFERENCES \"public\".\"users\"(\"id\") ON DELETE cascade ON UPDATE no action;",
+      "\nALTER TABLE \"message_groups\" ADD CONSTRAINT \"message_groups_parent_group_id_message_groups_id_fk\" FOREIGN KEY (\"parent_group_id\") REFERENCES \"public\".\"message_groups\"(\"id\") ON DELETE cascade ON UPDATE no action;",
+      "\nALTER TABLE \"message_groups\" ADD CONSTRAINT \"message_groups_user_message_id_messages_id_fk\" FOREIGN KEY (\"user_message_id\") REFERENCES \"public\".\"messages\"(\"id\") ON DELETE cascade ON UPDATE no action;",
+      "\nCREATE UNIQUE INDEX \"message_groups_client_id_user_id_unique\" ON \"message_groups\" USING btree (\"client_id\",\"user_id\");",
+      "\nALTER TABLE \"messages\" ADD CONSTRAINT \"messages_message_group_id_message_groups_id_fk\" FOREIGN KEY (\"message_group_id\") REFERENCES \"public\".\"message_groups\"(\"id\") ON DELETE cascade ON UPDATE no action;"
+    ],
+    "bps": true,
+    "folderMillis": 1757987091128,
+    "hash": "159c6cb21702a595023e863649ed87fcb895c618ccdba80fb0bc1ad53e0e7344"
   }
 ]

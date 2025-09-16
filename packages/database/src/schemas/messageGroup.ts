@@ -1,10 +1,5 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix  */
-import {
-  jsonb,
-  pgTable,
-  text,
-  uniqueIndex,
-} from 'drizzle-orm/pg-core';
+import { pgTable, text, uniqueIndex } from 'drizzle-orm/pg-core';
 import { createInsertSchema } from 'drizzle-zod';
 
 import { idGenerator } from '@/database/utils/idGenerator';
@@ -15,9 +10,10 @@ import { topics } from './topic';
 import { users } from './user';
 
 /**
- * Message groups table for multi-model parallel conversations
+ * Message groups table for multi-models parallel conversations
  * Allows multiple AI models to respond to the same user message in parallel
  */
+// @ts-ignore
 export const messageGroups = pgTable(
   'message_groups',
   {
@@ -33,14 +29,13 @@ export const messageGroups = pgTable(
       .notNull(),
 
     // 支持嵌套结构
-    parentGroupId: text('parent_group_id').references(() => messageGroups.id, { onDelete: 'cascade' }),
+    // @ts-ignore
+    parentGroupId: text('parent_group_id').references(() => messageGroups.id, {
+      onDelete: 'cascade',
+    }),
 
     // 关联的用户消息
     userMessageId: text('user_message_id').references(() => messages.id, { onDelete: 'cascade' }),
-
-    // 配置信息
-    models: jsonb('models').$type<string[]>(), // ['gpt-4', 'claude-3-sonnet', 'gemini-pro']
-    providers: jsonb('providers').$type<string[]>(), // ['openai', 'anthropic', 'google']
 
     // 元数据
     title: text('title'), // 可选的组标题
