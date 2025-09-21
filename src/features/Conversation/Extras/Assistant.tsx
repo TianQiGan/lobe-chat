@@ -7,6 +7,7 @@ import { chatSelectors } from '@/store/chat/selectors';
 import { ChatMessage } from '@/types/message';
 
 import { RenderMessageExtra } from '../types';
+import AutoSuggestions from './AutoSuggestions';
 import ExtraContainer from './ExtraContainer';
 import TTS from './TTS';
 import Translate from './Translate';
@@ -26,6 +27,11 @@ export const AssistantMessageExtra: RenderMessageExtra = memo<ChatMessage>(
           />
         )}
         <>
+          {!!extra?.autoSuggestions && (
+            <ExtraContainer>
+              <AutoSuggestions id={id} {...extra.autoSuggestions} />
+            </ExtraContainer>
+          )}
           {!!extra?.tts && (
             <ExtraContainer>
               <TTS content={content} id={id} loading={loading} {...extra?.tts} />

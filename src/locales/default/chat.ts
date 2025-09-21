@@ -14,6 +14,10 @@ export default {
     thought: '思考过程',
     unknownTitle: '未命名作品',
   },
+  autoSuggestions: {
+    generating: 'Generating suggestions...',
+    title: 'Suggested questions',
+  },
   backToBottom: '跳转至当前',
   chatList: {
     longMessageDetail: '查看详情',

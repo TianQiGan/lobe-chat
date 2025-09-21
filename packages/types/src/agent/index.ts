@@ -17,7 +17,28 @@ export interface LobeAgentTTSConfig {
   };
 }
 
+export interface LobeAgentAutoSuggestionConfig {
+  /**
+   * Whether auto-suggestion is enabled
+   * @default false
+   */
+  enabled?: boolean;
+  /**
+   * Custom suggestions prompt for the agent
+   */
+  customPrompt?: string;
+  /**
+   * Maximum number of suggestions to generate
+   * @default 3
+   */
+  maxSuggestions?: number;
+}
+
 export interface LobeAgentConfig {
+  /**
+   * Auto-suggestion configuration
+   */
+  autoSuggestion?: LobeAgentAutoSuggestionConfig;
   chatConfig: LobeAgentChatConfig;
   fewShots?: FewShots;
   files?: FileItem[];
