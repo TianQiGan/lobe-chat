@@ -1,19 +1,10 @@
 'use client';
 
-import {
-  ActionIcon,
-  Avatar,
-  Collapse,
-  GroupAvatar,
-  List,
-  Modal,
-  SearchBar,
-  Text,
-  Tooltip,
-} from '@lobehub/ui';
-import { Button, Checkbox, Empty } from 'antd';
+import { Avatar, Collapse, GroupAvatar, List, Modal, SearchBar, Text, Tooltip } from '@lobehub/ui';
+import { Button, Checkbox, Empty, Switch } from 'antd';
 import { createStyles, useTheme } from 'antd-style';
-import { Users, X } from 'lucide-react';
+import { omit } from 'lodash-es';
+import { Users } from 'lucide-react';
 import { ChangeEvent, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
@@ -27,9 +18,9 @@ import { LobeAgentSession, LobeSessionType } from '@/types/session';
 import { GroupTemplate, useGroupTemplates } from './templates';
 
 const TemplateItem = memo<{
-  cx: (...args: any[]) => string;
+  cx: (..._args: any[]) => string;
   isSelected: boolean;
-  onToggle: (templateId: string) => void;
+  onToggle: (_templateId: string) => void;
   styles: Record<string, string>;
   template: GroupTemplate;
 }>(({ template, isSelected, onToggle, styles, cx }) => {
@@ -71,9 +62,9 @@ const TemplateItem = memo<{
 
 const ExistingMemberItem = memo<{
   agent: LobeAgentSession;
-  cx: (...args: any[]) => string;
+  cx: (..._args: any[]) => string;
   isSelected: boolean;
-  onToggle: (agentId: string) => void;
+  onToggle: (_agentId: string) => void;
   styles: Record<string, string>;
 }>(({ agent, isSelected, onToggle, styles, cx }) => {
   const { t } = useTranslation(['chat', 'common']);
@@ -159,6 +150,9 @@ const useStyles = createStyles(({ css, token }) => ({
   memberDescription: css`
     display: block;
     padding-inline-end: 48px;
+  `,
+  modelSelectDisabled: css`
+    pointer-events: none;
   `,
   rightColumn: css`
     overflow-y: auto;
@@ -283,15 +277,34 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
       setHostModelConfig(config);
     }, []);
 
-    const handleRemoveMember = useCallback((templateId: string, memberTitle: string) => {
-      setRemovedMembers((prev) => ({
-        ...prev,
-        [templateId]: [...(prev[templateId] || []), memberTitle],
-      }));
-    }, []);
+    const handleToggleMember = useCallback(
+      (templateId: string, memberTitle: string, enabled: boolean) => {
+        setRemovedMembers((prev) => {
+          const current = prev[templateId] || [];
 
-    const handleRemoveHost = useCallback(() => {
-      setIsHostRemoved(true);
+          if (enabled) {
+            const next = current.filter((title) => title !== memberTitle);
+
+            if (next.length === 0) {
+              return omit(prev, [templateId]);
+            }
+
+            return { ...prev, [templateId]: next };
+          }
+
+          if (current.includes(memberTitle)) return prev;
+
+          return {
+            ...prev,
+            [templateId]: [...current, memberTitle],
+          };
+        });
+      },
+      [],
+    );
+
+    const handleHostToggle = useCallback((enabled: boolean) => {
+      setIsHostRemoved(!enabled);
     }, []);
 
     const handleSearchChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
@@ -343,25 +356,29 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
       });
     }, [agentSessions, searchTerm]);
 
-    const selectedTemplateMembers = useMemo(() => {
+    const templateMemberItems = useMemo(() => {
       if (!selectedTemplate) return [];
 
       const template = groupTemplates.find((t) => t.id === selectedTemplate);
       if (!template) return [];
 
-      const removedForTemplate = removedMembers[selectedTemplate] || [];
+      const removedForTemplate = new Set(removedMembers[selectedTemplate] || []);
 
-      return template.members
-        .filter((member) => !removedForTemplate.includes(member.title))
-        .map((member) => ({
-          avatar: member.avatar || DEFAULT_AVATAR,
-          backgroundColor: member.backgroundColor,
-          description: member.systemRole,
-          key: `${selectedTemplate}-${member.title}`,
-          systemRole: member.systemRole,
-          title: member.title,
-        }));
+      return template.members.map((member) => ({
+        avatar: member.avatar || DEFAULT_AVATAR,
+        backgroundColor: member.backgroundColor,
+        description: member.systemRole,
+        isRemoved: removedForTemplate.has(member.title),
+        key: `${selectedTemplate}-${member.title}`,
+        systemRole: member.systemRole,
+        title: member.title,
+      }));
     }, [selectedTemplate, removedMembers, groupTemplates]);
+
+    const activeTemplateMembersCount = useMemo(
+      () => templateMemberItems.filter((member) => !member.isRemoved).length,
+      [templateMemberItems],
+    );
 
     const selectedAgentListItems = useMemo(() => {
       return (
@@ -377,11 +394,12 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
 
             return {
               actions: (
-                <ActionIcon
-                  icon={X}
-                  onClick={() => handleRemoveAgent(agentId)}
+                <Switch
+                  checked
+                  onChange={(checked) => {
+                    if (!checked) handleRemoveAgent(agentId);
+                  }}
                   size="small"
-                  style={{ color: '#999' }}
                 />
               ),
               avatar: (
@@ -458,14 +476,10 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
     };
 
     const confirmDisabled = selectedTemplate
-      ? selectedTemplateMembers.length === 0 && isHostRemoved
+      ? activeTemplateMembersCount === 0 && isHostRemoved
       : selectedAgents.length === 0;
 
     const confirmLoading = selectedTemplate ? isCreatingFromTemplate : isCreatingCustom;
-
-    const hasAnySelection = selectedTemplate
-      ? selectedTemplateMembers.length > 0 || !isHostRemoved
-      : selectedAgentListItems.length > 0 || !isHostRemoved;
 
     return (
       <Modal
@@ -576,86 +590,99 @@ const ChatGroupWizard = memo<ChatGroupWizardProps>(
           </Flexbox>
 
           <Flexbox className={styles.rightColumn} flex={1}>
-            {!hasAnySelection ? (
-              <Flexbox align="center" flex={1} justify="center">
-                <Empty
-                  description={
-                    selectedTemplate
-                      ? t('groupWizard.noSelectedTemplates')
-                      : t('memberSelection.noSelectedAgents')
-                  }
-                  image={Empty.PRESENTED_IMAGE_SIMPLE}
-                />
-              </Flexbox>
-            ) : (
-              <Flexbox flex={1} gap={16} style={{ overflowY: 'auto' }}>
-                {!isHostRemoved && (
-                  <Flexbox align="center" className={styles.hostCard} gap={12} horizontal>
-                    <Avatar avatar={DEFAULT_SUPERVISOR_AVATAR} shape="circle" size={40} />
-                    <Flexbox flex={1} gap={2}>
-                      <Text style={{ fontSize: 14, fontWeight: 500 }}>
-                        {t('groupWizard.host.title')}
-                      </Text>
-                      <Text style={{ color: '#999', fontSize: 12 }}>
-                        {t('groupWizard.host.description')}
-                      </Text>
-                    </Flexbox>
+            <Flexbox flex={1} gap={16} style={{ overflowY: 'auto' }}>
+              <Flexbox align="center" className={styles.hostCard} gap={12} horizontal>
+                <Avatar avatar={DEFAULT_SUPERVISOR_AVATAR} shape="circle" size={40} />
+                <Flexbox flex={1} gap={2}>
+                  <Text
+                    style={{ fontSize: 14, fontWeight: 500 }}
+                    type={isHostRemoved ? 'secondary' : undefined}
+                  >
+                    {t('groupWizard.host.title')}
+                  </Text>
+                  <Text
+                    style={{ color: '#999', fontSize: 12 }}
+                    type={isHostRemoved ? 'secondary' : undefined}
+                  >
+                    {t('groupWizard.host.description')}
+                  </Text>
+                </Flexbox>
+                <Flexbox align="center" gap={12} horizontal>
+                  <div
+                    className={cx(isHostRemoved && styles.modelSelectDisabled)}
+                    style={{ opacity: isHostRemoved ? 0.6 : 1 }}
+                  >
                     <ModelSelect
                       onChange={handleHostModelChange}
                       value={normalizedHostModelConfig}
                     />
-                    <ActionIcon
-                      icon={X}
-                      onClick={handleRemoveHost}
+                  </div>
+                  <Tooltip title={t('groupWizard.host.tooltip')}>
+                    <Switch
+                      checked={!isHostRemoved}
+                      onChange={(checked) => handleHostToggle(checked)}
                       size="small"
-                      style={{ color: '#999' }}
                     />
-                  </Flexbox>
-                )}
-
-                {selectedTemplate ? (
-                  selectedTemplateMembers.length > 0 ? (
-                    <List
-                      items={selectedTemplateMembers.map((member) => ({
-                        actions: (
-                          <ActionIcon
-                            icon={X}
-                            onClick={() => handleRemoveMember(selectedTemplate, member.title)}
-                            size="small"
-                            style={{ color: '#999' }}
-                          />
-                        ),
-                        avatar: (
-                          <Avatar
-                            avatar={member.avatar}
-                            background={member.backgroundColor}
-                            shape="circle"
-                            size={40}
-                          />
-                        ),
-                        description: member.systemRole ? (
-                          <Tooltip title={member.systemRole}>
-                            <Text className={memberDescriptionClass} ellipsis={{ rows: 1 }}>
-                              {member.systemRole}
-                            </Text>
-                          </Tooltip>
-                        ) : null,
-                        key: member.key,
-                        showAction: true,
-                        title: member.title,
-                      }))}
-                    />
-                  ) : (
-                    <Empty
-                      description={t('groupWizard.noTemplateMembers')}
-                      image={Empty.PRESENTED_IMAGE_SIMPLE}
-                    />
-                  )
-                ) : selectedAgentListItems.length > 0 ? (
-                  <List items={selectedAgentListItems} />
-                ) : null}
+                  </Tooltip>
+                </Flexbox>
               </Flexbox>
-            )}
+
+              {selectedTemplate ? (
+                templateMemberItems.length > 0 ? (
+                  <List
+                    items={templateMemberItems.map((member) => ({
+                      actions: (
+                        <Switch
+                          checked={!member.isRemoved}
+                          onChange={(checked) =>
+                            handleToggleMember(selectedTemplate, member.title, checked)
+                          }
+                          size="small"
+                        />
+                      ),
+                      avatar: (
+                        <Avatar
+                          avatar={member.avatar}
+                          background={member.backgroundColor}
+                          shape="circle"
+                          size={40}
+                        />
+                      ),
+                      description: member.systemRole ? (
+                        <Tooltip title={member.systemRole}>
+                          <Text
+                            className={memberDescriptionClass}
+                            ellipsis={{ rows: 1 }}
+                            type={member.isRemoved ? 'secondary' : undefined}
+                          >
+                            {member.systemRole}
+                          </Text>
+                        </Tooltip>
+                      ) : null,
+                      key: member.key,
+                      showAction: true,
+                      title: (
+                        <Text type={member.isRemoved ? 'secondary' : undefined}>
+                          {member.title}
+                        </Text>
+                      ),
+                    }))}
+                  />
+                ) : (
+                  <Empty
+                    description={t('groupWizard.noTemplateMembers')}
+                    image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  />
+                )
+              ) : selectedAgentListItems.length > 0 ? (
+                <List items={selectedAgentListItems} />
+              ) : (
+                <Empty
+                  description={t('memberSelection.noSelectedAgents')}
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                />
+              )}
+            </Flexbox>
           </Flexbox>
         </Flexbox>
       </Modal>

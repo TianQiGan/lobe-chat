@@ -101,6 +101,7 @@ export default {
     host: {
       description: '使群聊自动化运行',
       title: '主持人',
+      tooltip: '如果禁用群聊主持人，您需要手动@提及成员才能让他们回复',
     },
     memberCount: '{{count}} 个成员',
     noMatchingTemplates: '没有匹配的模板',
