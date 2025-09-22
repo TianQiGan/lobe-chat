@@ -7,14 +7,12 @@ import {
   Segmented,
   Select,
   SliderWithInput,
-  Text,
 } from '@lobehub/ui';
 import { Form as AntdForm, App, Input, Switch } from 'antd';
 import { isEqual } from 'lodash';
 import { Coffee, Rabbit, Turtle } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Flexbox } from 'react-layout-kit';
 
 import { FORM_STYLE } from '@/const/layoutTokens';
 
@@ -58,40 +56,38 @@ const ChatGroupSettings = memo(() => {
   ];
 
   const orchestratorSettings: FormGroupItemType = {
-    children: enableSupervisor
-      ? [
-          {
-            children: <ModelSelect />,
-            desc: t('settingGroupChat.model.desc'),
-            label: t('settingGroupChat.model.title'),
-            name: '_modelConfig',
-          },
-          {
-            children: (
-              <TextArea
-                autoSize={{ maxRows: 8, minRows: 3 }}
-                placeholder={t('settingGroupChat.systemPrompt.placeholder')}
-                rows={4}
-              />
-            ),
-            desc: t('settingGroupChat.systemPrompt.desc'),
-            label: t('settingGroupChat.systemPrompt.title'),
-            name: 'systemPrompt',
-          },
-        ]
-      : [],
-    extra: (
-      <Flexbox align={'center'} gap={8} horizontal>
-        {!enableSupervisor && (
-          <Text style={{ fontSize: 12 }} type="secondary">
-            主持人已禁用
-          </Text>
-        )}
-        <AntdForm.Item name="enableSupervisor" style={{ margin: 0 }} valuePropName="checked">
-          <Switch />
-        </AntdForm.Item>
-      </Flexbox>
-    ),
+    children: [
+      {
+        children: <Switch />,
+        desc: t('settingGroupChat.enableSupervisor.desc'),
+        divider: false,
+        label: t('settingGroupChat.enableSupervisor.title'),
+        name: 'enableSupervisor',
+      },
+      // Only show other options when enableSupervisor is true
+      ...(enableSupervisor
+        ? [
+            {
+              children: <ModelSelect />,
+              desc: t('settingGroupChat.model.desc'),
+              label: t('settingGroupChat.model.title'),
+              name: '_modelConfig',
+            },
+            {
+              children: (
+                <TextArea
+                  autoSize={{ maxRows: 8, minRows: 3 }}
+                  placeholder={t('settingGroupChat.systemPrompt.placeholder')}
+                  rows={4}
+                />
+              ),
+              desc: t('settingGroupChat.systemPrompt.desc'),
+              label: t('settingGroupChat.systemPrompt.title'),
+              name: 'systemPrompt',
+            },
+          ]
+        : []),
+    ],
     title: t('settingGroupChat.orchestratorTitle'),
   };
 

@@ -337,6 +337,10 @@ export default {
       desc: '允许成员之间发送私信',
       title: '允许私信',
     },
+    enableSupervisor: {
+      desc: '启用群聊主持人功能，主持人将管理群聊对话流程',
+      title: '启用主持人',
+    },
     maxResponseInRow: {
       desc: '选择成员可以连续回复多少条消息。设置为 0 则禁用此限制。',
       title: '连续回复消息数',
