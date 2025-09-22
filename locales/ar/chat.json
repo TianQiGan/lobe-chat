@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "اختر المساعدين الحاليين...",
     "createGroup": "إنشاء دردشة جماعية",
+    "existingMembers": "الأعضاء الحاليون",
     "groupMembers": "سيتم أيضًا إضافة هؤلاء المساعدين إلى قائمتك",
+    "host": {
+      "description": "لجعل الدردشة الجماعية تعمل تلقائيًا",
+      "title": "المضيف"
+    },
     "memberCount": "{{count}} عضو",
     "noMatchingTemplates": "لا توجد قوالب مطابقة",
     "noSelectedTemplates": "لم يتم اختيار أي قالب",
+    "noTemplateMembers": "لا يوجد أعضاء في القالب",
     "noTemplates": "لا توجد قوالب متاحة",
     "searchTemplates": "ابحث في القوالب...",
-    "title": "إنشاء دردشة جماعية"
+    "title": "إنشاء دردشة جماعية",
+    "useTemplate": "استخدام القالب"
   },
   "hideForYou": "تم إخفاء محتوى الرسائل الخاصة، يرجى تفعيل خيار 【عرض محتوى الرسائل الخاصة】 في الإعدادات للعرض",
   "history": {

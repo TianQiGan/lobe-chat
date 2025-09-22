@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Mevcut asistanları seçin...",
     "createGroup": "Grup sohbeti oluştur",
+    "existingMembers": "Mevcut Yardımcılar",
     "groupMembers": "Bu asistanlar listenize de eklenecek",
+    "host": {
+      "description": "Grup sohbetini otomatik olarak yönetir",
+      "title": "Ev Sahibi"
+    },
     "memberCount": "{{count}} üye",
     "noMatchingTemplates": "Eşleşen şablon yok",
     "noSelectedTemplates": "Şablon seçilmedi",
+    "noTemplateMembers": "Şablonda üye yok",
     "noTemplates": "Kullanılabilir şablon yok",
     "searchTemplates": "Şablonlarda ara...",
-    "title": "Grup sohbeti oluştur"
+    "title": "Grup sohbeti oluştur",
+    "useTemplate": "Şablon Kullan"
   },
   "hideForYou": "Özel mesaj içeriği gizlendi, görüntülemek için ayarlardan 【Özel Mesaj İçeriğini Göster】 seçeneğini açın",
   "history": {

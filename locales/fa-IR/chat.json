@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "انتخاب دستیاران موجود...",
     "createGroup": "ایجاد گروه چت",
+    "existingMembers": "دستیاران موجود",
     "groupMembers": "این دستیاران نیز به فهرست شما اضافه خواهند شد",
+    "host": {
+      "description": "اجرای خودکار چت گروهی",
+      "title": "مجری"
+    },
     "memberCount": "{{count}} عضو",
     "noMatchingTemplates": "هیچ قالبی مطابقت ندارد",
     "noSelectedTemplates": "هیچ قالبی انتخاب نشده است",
+    "noTemplateMembers": "در قالب هیچ عضوی وجود ندارد",
     "noTemplates": "هیچ قالبی در دسترس نیست",
     "searchTemplates": "جستجوی قالب‌ها...",
-    "title": "ایجاد گروه چت"
+    "title": "ایجاد گروه چت",
+    "useTemplate": "استفاده از قالب"
   },
   "hideForYou": "محتوای پیام خصوصی مخفی شده است، لطفاً برای مشاهده آن گزینه «نمایش محتوای پیام خصوصی» را در تنظیمات فعال کنید",
   "history": {

@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Chọn trợ lý hiện có...",
     "createGroup": "Tạo nhóm trò chuyện",
+    "existingMembers": "Trợ lý hiện có",
     "groupMembers": "Những trợ lý này cũng sẽ được thêm vào danh sách của bạn",
+    "host": {
+      "description": "Tự động hóa hoạt động nhóm chat",
+      "title": "Người dẫn chương trình"
+    },
     "memberCount": "{{count}} thành viên",
     "noMatchingTemplates": "Không có mẫu phù hợp",
     "noSelectedTemplates": "Chưa chọn mẫu nào",
+    "noTemplateMembers": "Không có thành viên trong mẫu",
     "noTemplates": "Không có mẫu nào khả dụng",
     "searchTemplates": "Tìm kiếm mẫu...",
-    "title": "Tạo nhóm trò chuyện"
+    "title": "Tạo nhóm trò chuyện",
+    "useTemplate": "Sử dụng mẫu"
   },
   "hideForYou": "Nội dung tin nhắn riêng tư đã bị ẩn, vui lòng bật 【Hiển thị nội dung tin nhắn riêng tư】 trong cài đặt để xem",
   "history": {

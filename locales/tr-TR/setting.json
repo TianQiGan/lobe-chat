@@ -310,6 +310,14 @@
       "placeholder": "Lütfen grup sohbeti adını girin",
       "title": "Grup Sohbeti Adı"
     },
+    "scene": {
+      "desc": "Grup sohbeti sahnesini seçin",
+      "options": {
+        "casual": "Rahat",
+        "productive": "Verimli"
+      },
+      "title": "Grup Sohbeti Sahnesi"
+    },
     "submit": "Grup Sohbetini Güncelle",
     "systemPrompt": {
       "placeholder": "Lütfen moderatör sistem istemini girin",
@@ -366,9 +374,16 @@
     "addToGroup": "Gruba Ekle",
     "availableAgents": "Mevcut Asistanlar",
     "defaultAgent": "Özel Asistan",
+    "disableHost": "Sunucu Yardımcısını Kapat",
     "edit": "Üyeyi Düzenle",
     "empty": "Bu grup sohbetinde henüz temsilci yok. Üye eklemek için + butonuna tıklayın.",
+    "enableHost": "Sunucu Yardımcısını Etkinleştir",
+    "groupHost": "Grup Sunucusu",
     "groupMembers": "Grup Üyeleri",
+    "host": {
+      "description": "Sunucu grupta olduğunda, grup sohbeti otomatik olarak çalışır ve yaratıcı görevler için uygundur.",
+      "title": "Sunucu"
+    },
     "noAvailableAgents": "Mevcut asistan yok",
     "noDescription": "Açıklama yok",
     "noMembersInGroup": "Grup üyesi yok",

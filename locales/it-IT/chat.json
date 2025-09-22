@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Seleziona assistenti esistenti...",
     "createGroup": "Crea gruppo",
+    "existingMembers": "Assistenti esistenti",
     "groupMembers": "Questi assistenti saranno aggiunti anche alla tua lista",
+    "host": {
+      "description": "Automatizza il funzionamento della chat di gruppo",
+      "title": "Moderatore"
+    },
     "memberCount": "{{count}} membri",
     "noMatchingTemplates": "Nessun modello corrispondente",
     "noSelectedTemplates": "Nessun modello selezionato",
+    "noTemplateMembers": "Nessun membro nel modello",
     "noTemplates": "Nessun modello disponibile",
     "searchTemplates": "Cerca modelli...",
-    "title": "Crea gruppo"
+    "title": "Crea gruppo",
+    "useTemplate": "Usa modello"
   },
   "hideForYou": "Il contenuto del messaggio privato è stato nascosto, abilita 【Mostra contenuto messaggi privati】 nelle impostazioni per visualizzarlo",
   "history": {

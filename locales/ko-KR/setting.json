@@ -310,6 +310,14 @@
       "placeholder": "그룹 채팅 이름을 입력하세요",
       "title": "그룹 채팅 이름"
     },
+    "scene": {
+      "desc": "그룹 채팅 환경 선택",
+      "options": {
+        "casual": "캐주얼",
+        "productive": "생산성"
+      },
+      "title": "그룹 채팅 환경"
+    },
     "submit": "그룹 채팅 업데이트",
     "systemPrompt": {
       "placeholder": "호스트 시스템 프롬프트를 입력하세요",
@@ -366,9 +374,16 @@
     "addToGroup": "그룹에 추가",
     "availableAgents": "사용 가능한 어시스턴트",
     "defaultAgent": "맞춤 어시스턴트",
+    "disableHost": "호스트 도우미 비활성화",
     "edit": "멤버 편집",
     "empty": "이 그룹 채팅에는 에이전트가 없습니다. + 버튼을 눌러 멤버를 추가하세요.",
+    "enableHost": "호스트 도우미 활성화",
+    "groupHost": "그룹 호스트",
     "groupMembers": "그룹 멤버",
+    "host": {
+      "description": "호스트가 그룹에 있을 때 그룹 채팅이 자동으로 운영되며, 창의적인 작업에 적합합니다.",
+      "title": "호스트"
+    },
     "noAvailableAgents": "사용 가능한 어시스턴트가 없습니다",
     "noDescription": "설명 없음",
     "noMembersInGroup": "그룹에 멤버가 없습니다",

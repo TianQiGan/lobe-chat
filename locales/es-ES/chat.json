@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Selecciona asistentes existentes...",
     "createGroup": "Crear grupo de chat",
+    "existingMembers": "Asistentes existentes",
     "groupMembers": "Estos asistentes también se agregarán a tu lista",
+    "host": {
+      "description": "Automatiza el funcionamiento del chat grupal",
+      "title": "Anfitrión"
+    },
     "memberCount": "{{count}} miembros",
     "noMatchingTemplates": "No hay plantillas que coincidan",
     "noSelectedTemplates": "No se seleccionaron plantillas",
+    "noTemplateMembers": "No hay miembros en la plantilla",
     "noTemplates": "No hay plantillas disponibles",
     "searchTemplates": "Buscar plantillas...",
-    "title": "Crear grupo de chat"
+    "title": "Crear grupo de chat",
+    "useTemplate": "Usar plantilla"
   },
   "hideForYou": "El contenido del mensaje privado está oculto, por favor activa 【Mostrar contenido de mensajes privados】 en la configuración para verlo",
   "history": {

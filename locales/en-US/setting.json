@@ -310,6 +310,14 @@
       "placeholder": "Please enter the group chat name",
       "title": "Group Chat Name"
     },
+    "scene": {
+      "desc": "Select group chat scenario",
+      "options": {
+        "casual": "Casual",
+        "productive": "Productive"
+      },
+      "title": "Group Chat Scenario"
+    },
     "submit": "Update Group Chat",
     "systemPrompt": {
       "placeholder": "Please enter the host system prompt",
@@ -366,9 +374,16 @@
     "addToGroup": "Add to Group",
     "availableAgents": "Available Assistants",
     "defaultAgent": "Custom Assistant",
+    "disableHost": "Disable Host Assistant",
     "edit": "Edit Member",
     "empty": "No agents in this group chat yet. Click the + button to add members.",
+    "enableHost": "Enable Host Assistant",
+    "groupHost": "Group Host",
     "groupMembers": "Group Members",
+    "host": {
+      "description": "When the host is in the group, the chat runs automatically, suitable for brainstorming tasks.",
+      "title": "Host"
+    },
     "noAvailableAgents": "No available assistants",
     "noDescription": "No description",
     "noMembersInGroup": "No members in the group",

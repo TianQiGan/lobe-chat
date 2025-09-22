@@ -310,6 +310,14 @@
       "placeholder": "グループチャット名を入力してください",
       "title": "グループチャット名"
     },
+    "scene": {
+      "desc": "グループチャットのシーンを選択",
+      "options": {
+        "casual": "カジュアル",
+        "productive": "生産性"
+      },
+      "title": "グループチャットのシーン"
+    },
     "submit": "グループチャットを更新",
     "systemPrompt": {
       "placeholder": "ホストのシステムプロンプトを入力してください",
@@ -366,9 +374,16 @@
     "addToGroup": "グループに参加",
     "availableAgents": "利用可能なアシスタント",
     "defaultAgent": "カスタムアシスタント",
+    "disableHost": "ホストアシスタントを無効にする",
     "edit": "メンバーを編集",
     "empty": "このグループチャットには代理がいません。+ ボタンをクリックしてメンバーを追加してください。",
+    "enableHost": "ホストアシスタントを有効にする",
+    "groupHost": "グループホスト",
     "groupMembers": "グループメンバー",
+    "host": {
+      "description": "ホストがグループにいるとき、グループチャットは自動化され、発散的なタスクに適しています。",
+      "title": "ホスト"
+    },
     "noAvailableAgents": "利用可能なアシスタントがいません",
     "noDescription": "説明なし",
     "noMembersInGroup": "グループにメンバーがいません",

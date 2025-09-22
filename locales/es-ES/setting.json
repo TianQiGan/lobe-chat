@@ -310,6 +310,14 @@
       "placeholder": "Por favor, ingrese el nombre del grupo",
       "title": "Nombre del grupo"
     },
+    "scene": {
+      "desc": "Selecciona el escenario del chat grupal",
+      "options": {
+        "casual": "Informal",
+        "productive": "Productivo"
+      },
+      "title": "Escenario del chat grupal"
+    },
     "submit": "Actualizar grupo",
     "systemPrompt": {
       "placeholder": "Por favor, ingrese la indicación del sistema para el anfitrión",
@@ -366,9 +374,16 @@
     "addToGroup": "Unirse al grupo",
     "availableAgents": "Asistentes disponibles",
     "defaultAgent": "Asistente personalizado",
+    "disableHost": "Desactivar asistente del anfitrión",
     "edit": "Editar miembro",
     "empty": "No hay agentes en este grupo. Haga clic en el botón + para agregar miembros.",
+    "enableHost": "Activar asistente del anfitrión",
+    "groupHost": "Anfitrión del grupo",
     "groupMembers": "Miembros del grupo",
+    "host": {
+      "description": "Cuando el anfitrión está en el grupo, el chat grupal se automatiza, ideal para tareas creativas.",
+      "title": "Anfitrión"
+    },
     "noAvailableAgents": "No hay asistentes disponibles",
     "noDescription": "Sin descripción",
     "noMembersInGroup": "El grupo no tiene miembros",

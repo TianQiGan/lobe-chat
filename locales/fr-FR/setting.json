@@ -310,6 +310,14 @@
       "placeholder": "Veuillez saisir le nom du groupe",
       "title": "Nom du groupe"
     },
+    "scene": {
+      "desc": "Choisir le scénario de discussion de groupe",
+      "options": {
+        "casual": "Décontracté",
+        "productive": "Productif"
+      },
+      "title": "Scénario de discussion de groupe"
+    },
     "submit": "Mettre à jour le groupe",
     "systemPrompt": {
       "placeholder": "Veuillez saisir l'invite système de l'animateur",
@@ -366,9 +374,16 @@
     "addToGroup": "Ajouter au groupe",
     "availableAgents": "Assistants disponibles",
     "defaultAgent": "Assistant personnalisé",
+    "disableHost": "Désactiver l'assistant hôte",
     "edit": "Modifier le membre",
     "empty": "Aucun agent dans ce groupe. Cliquez sur le bouton + pour ajouter des membres.",
+    "enableHost": "Activer l'assistant hôte",
+    "groupHost": "Hôte du groupe",
     "groupMembers": "Membres du groupe",
+    "host": {
+      "description": "Lorsque l'hôte est dans le groupe, la discussion de groupe fonctionne automatiquement, adaptée aux tâches créatives.",
+      "title": "Hôte"
+    },
     "noAvailableAgents": "Aucun assistant disponible",
     "noDescription": "Pas de description",
     "noMembersInGroup": "Aucun membre dans le groupe",

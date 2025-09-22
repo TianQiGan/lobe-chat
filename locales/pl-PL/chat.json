@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Wybierz istniejących asystentów...",
     "createGroup": "Utwórz grupę czatu",
+    "existingMembers": "Istniejący członkowie",
     "groupMembers": "Ci asystenci zostaną również dodani do Twojej listy",
+    "host": {
+      "description": "Automatyzuje działanie czatu grupowego",
+      "title": "Gospodarz"
+    },
     "memberCount": "{{count}} członków",
     "noMatchingTemplates": "Brak pasujących szablonów",
     "noSelectedTemplates": "Nie wybrano szablonów",
+    "noTemplateMembers": "Brak członków w szablonie",
     "noTemplates": "Brak dostępnych szablonów",
     "searchTemplates": "Szukaj szablonów...",
-    "title": "Utwórz grupę czatu"
+    "title": "Utwórz grupę czatu",
+    "useTemplate": "Użyj szablonu"
   },
   "hideForYou": "Treść prywatnej wiadomości została ukryta, włącz opcję 【Pokaż treść prywatnych wiadomości】 w ustawieniach, aby zobaczyć",
   "history": {

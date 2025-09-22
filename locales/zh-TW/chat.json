@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "選擇現有助理...",
     "createGroup": "建立群組聊天",
+    "existingMembers": "已有助理",
     "groupMembers": "這些助理也將被加入您的列表中",
+    "host": {
+      "description": "使群聊自動化運作",
+      "title": "主持人"
+    },
     "memberCount": "{{count}} 位成員",
     "noMatchingTemplates": "沒有符合的範本",
     "noSelectedTemplates": "未選擇範本",
+    "noTemplateMembers": "模板中沒有成員",
     "noTemplates": "沒有可用的範本",
     "searchTemplates": "搜尋範本...",
-    "title": "建立群組聊天"
+    "title": "建立群組聊天",
+    "useTemplate": "使用模板"
   },
   "hideForYou": "私訊內容已經隱藏，請在設定中開啟【顯示私訊內容】以查看",
   "history": {

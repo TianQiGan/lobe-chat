@@ -310,6 +310,14 @@
       "placeholder": "Vui lòng nhập tên nhóm trò chuyện",
       "title": "Tên nhóm trò chuyện"
     },
+    "scene": {
+      "desc": "Chọn bối cảnh trò chuyện nhóm",
+      "options": {
+        "casual": "Thư giãn",
+        "productive": "Năng suất"
+      },
+      "title": "Bối cảnh trò chuyện nhóm"
+    },
     "submit": "Cập nhật nhóm trò chuyện",
     "systemPrompt": {
       "placeholder": "Vui lòng nhập từ khóa hệ thống cho người dẫn chương trình",
@@ -366,9 +374,16 @@
     "addToGroup": "Thêm vào nhóm",
     "availableAgents": "Trợ lý có sẵn",
     "defaultAgent": "Trợ lý tùy chỉnh",
+    "disableHost": "Tắt trợ lý chủ trì",
     "edit": "Chỉnh sửa thành viên",
     "empty": "Hiện chưa có đại diện trong nhóm này. Nhấn nút + để thêm thành viên.",
+    "enableHost": "Bật trợ lý chủ trì",
+    "groupHost": "Chủ trì nhóm",
     "groupMembers": "Thành viên nhóm",
+    "host": {
+      "description": "Khi chủ trì có mặt trong nhóm, trò chuyện nhóm sẽ được tự động hóa, phù hợp với các nhiệm vụ sáng tạo.",
+      "title": "Chủ trì"
+    },
     "noAvailableAgents": "Không có trợ lý khả dụng",
     "noDescription": "Chưa có mô tả",
     "noMembersInGroup": "Nhóm chưa có thành viên",

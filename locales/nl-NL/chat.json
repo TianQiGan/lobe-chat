@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Kies bestaande assistenten...",
     "createGroup": "Groepschat aanmaken",
+    "existingMembers": "Bestaande assistenten",
     "groupMembers": "Deze assistenten worden ook aan uw lijst toegevoegd",
+    "host": {
+      "description": "Automatiseer groepschat",
+      "title": "Gastheer"
+    },
     "memberCount": "{{count}} leden",
     "noMatchingTemplates": "Geen overeenkomende sjablonen",
     "noSelectedTemplates": "Geen sjablonen geselecteerd",
+    "noTemplateMembers": "Geen leden in de sjabloon",
     "noTemplates": "Geen sjablonen beschikbaar",
     "searchTemplates": "Zoek sjablonen...",
-    "title": "Groepschat aanmaken"
+    "title": "Groepschat aanmaken",
+    "useTemplate": "Sjabloon gebruiken"
   },
   "hideForYou": "Privéberichten zijn verborgen. Schakel 'Toon privéberichten' in de instellingen in om ze te bekijken.",
   "history": {

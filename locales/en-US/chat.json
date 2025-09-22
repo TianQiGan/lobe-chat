@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Select existing assistants...",
     "createGroup": "Create Group Chat",
+    "existingMembers": "Existing Assistants",
     "groupMembers": "These assistants will also be added to your list",
+    "host": {
+      "description": "Automate group chat operations",
+      "title": "Host"
+    },
     "memberCount": "{{count}} members",
     "noMatchingTemplates": "No matching templates",
     "noSelectedTemplates": "No templates selected",
+    "noTemplateMembers": "No members in the template",
     "noTemplates": "No templates available",
     "searchTemplates": "Search templates...",
-    "title": "Create Group Chat"
+    "title": "Create Group Chat",
+    "useTemplate": "Use Template"
   },
   "hideForYou": "Direct message content is hidden. Please enable 'Show Direct Message Content' in settings to view.",
   "history": {

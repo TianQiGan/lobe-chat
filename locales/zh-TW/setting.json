@@ -310,6 +310,14 @@
       "placeholder": "請輸入群聊名稱",
       "title": "群聊名稱"
     },
+    "scene": {
+      "desc": "選擇群聊場景",
+      "options": {
+        "casual": "休閒",
+        "productive": "生產力"
+      },
+      "title": "群聊場景"
+    },
     "submit": "更新群聊",
     "systemPrompt": {
       "placeholder": "請輸入主持人系統提示詞",
@@ -366,9 +374,16 @@
     "addToGroup": "加入群組",
     "availableAgents": "可用助理",
     "defaultAgent": "自訂助理",
+    "disableHost": "關閉主持助理",
     "edit": "編輯成員",
     "empty": "該群聊中暫無代理。點擊 + 按鈕添加成員。",
+    "enableHost": "啟用主持助理",
+    "groupHost": "群主持",
     "groupMembers": "群組成員",
+    "host": {
+      "description": "主持人在群組中時，群聊將自動化運行，適合發散性任務。",
+      "title": "主持人"
+    },
     "noAvailableAgents": "暫無可用助理",
     "noDescription": "暫無描述",
     "noMembersInGroup": "群組暫無成員",

@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "Bestehende Assistenten auswählen...",
     "createGroup": "Gruppenchat erstellen",
+    "existingMembers": "Bestehende Assistenten",
     "groupMembers": "Diese Assistenten werden ebenfalls zu Ihrer Liste hinzugefügt",
+    "host": {
+      "description": "Automatisiert den Gruppenchat",
+      "title": "Moderator"
+    },
     "memberCount": "{{count}} Mitglieder",
     "noMatchingTemplates": "Keine passenden Vorlagen",
     "noSelectedTemplates": "Keine Vorlagen ausgewählt",
+    "noTemplateMembers": "Keine Mitglieder in der Vorlage",
     "noTemplates": "Keine Vorlagen verfügbar",
     "searchTemplates": "Vorlagen durchsuchen...",
-    "title": "Gruppenchat erstellen"
+    "title": "Gruppenchat erstellen",
+    "useTemplate": "Vorlage verwenden"
   },
   "hideForYou": "Private Nachrichten sind ausgeblendet. Bitte aktivieren Sie in den Einstellungen „Private Nachrichten anzeigen“, um sie zu sehen.",
   "history": {

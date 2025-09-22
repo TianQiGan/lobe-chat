@@ -310,6 +310,14 @@
       "placeholder": "Voer een groepschatnaam in",
       "title": "Groepschatnaam"
     },
+    "scene": {
+      "desc": "Kies groepschatscenario",
+      "options": {
+        "casual": "Informeel",
+        "productive": "Productief"
+      },
+      "title": "Groepschatscenario"
+    },
     "submit": "Groepschat bijwerken",
     "systemPrompt": {
       "placeholder": "Voer de systeemopdracht van de host in",
@@ -366,9 +374,16 @@
     "addToGroup": "Toevoegen aan groep",
     "availableAgents": "Beschikbare assistenten",
     "defaultAgent": "Aangepaste assistent",
+    "disableHost": "Host-assistent uitschakelen",
     "edit": "Lid bewerken",
     "empty": "Er zijn momenteel geen agenten in deze groepschat. Klik op de + knop om leden toe te voegen.",
+    "enableHost": "Host-assistent inschakelen",
+    "groupHost": "Groepshost",
     "groupMembers": "Groepsleden",
+    "host": {
+      "description": "Wanneer de host in de groep is, wordt de groepschat automatisch beheerd, geschikt voor creatieve taken.",
+      "title": "Host"
+    },
     "noAvailableAgents": "Geen beschikbare assistenten",
     "noDescription": "Geen beschrijving",
     "noMembersInGroup": "Geen leden in de groep",

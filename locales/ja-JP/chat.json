@@ -94,13 +94,20 @@
   "groupWizard": {
     "chooseMembers": "既存のアシスタントを選択...",
     "createGroup": "グループチャットを作成",
+    "existingMembers": "既存のメンバー",
     "groupMembers": "これらのアシスタントもあなたのリストに追加されます",
+    "host": {
+      "description": "グループチャットの自動運用を実現する",
+      "title": "ホスト"
+    },
     "memberCount": "{{count}} 人のメンバー",
     "noMatchingTemplates": "一致するテンプレートがありません",
     "noSelectedTemplates": "テンプレートが選択されていません",
+    "noTemplateMembers": "テンプレートにメンバーがいません",
     "noTemplates": "利用可能なテンプレートがありません",
     "searchTemplates": "テンプレートを検索...",
-    "title": "グループチャットの作成"
+    "title": "グループチャットの作成",
+    "useTemplate": "テンプレートを使用する"
   },
   "hideForYou": "プライベートメッセージの内容は非表示です。設定で【プライベートメッセージの内容を表示】を有効にしてご覧ください。",
   "history": {

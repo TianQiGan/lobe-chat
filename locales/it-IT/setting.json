@@ -310,6 +310,14 @@
       "placeholder": "Inserisci il nome della chat di gruppo",
       "title": "Nome della chat di gruppo"
     },
+    "scene": {
+      "desc": "Seleziona la scena della chat di gruppo",
+      "options": {
+        "casual": "Informale",
+        "productive": "Produttivo"
+      },
+      "title": "Scena della chat di gruppo"
+    },
     "submit": "Aggiorna chat di gruppo",
     "systemPrompt": {
       "placeholder": "Inserisci il prompt di sistema del moderatore",
@@ -366,9 +374,16 @@
     "addToGroup": "Aggiungi al gruppo",
     "availableAgents": "Assistenti disponibili",
     "defaultAgent": "Assistente personalizzato",
+    "disableHost": "Disattiva assistente host",
     "edit": "Modifica membro",
     "empty": "Nessun agente presente in questa chat di gruppo. Clicca il pulsante + per aggiungere membri.",
+    "enableHost": "Attiva assistente host",
+    "groupHost": "Host del gruppo",
     "groupMembers": "Membri del gruppo",
+    "host": {
+      "description": "Quando l'host è nel gruppo, la chat di gruppo funziona in modo automatizzato, adatta a compiti creativi.",
+      "title": "Host"
+    },
     "noAvailableAgents": "Nessun assistente disponibile",
     "noDescription": "Nessuna descrizione",
     "noMembersInGroup": "Nessun membro nel gruppo",
