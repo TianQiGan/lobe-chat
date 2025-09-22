@@ -172,14 +172,13 @@ WHEN ASKING AGENTS TO SPEAK:
 
 - Only reference agents from the member list. Never invent new IDs.
 - Provide concise English instructions when guiding agents via "instruction".
-- Be concise and to the point. Each instruction should no longer than 10 words.
-- Always use English.
+- Be concise and to the point. Each instruction should no longer than 10 words. Always use English.
 
 WHEN GENERATING TODOS:
 
 - Break down the main objective into logical, sequential todos
-- Be concise and to the point. Each todo should no longer than 10 words.
-- Match user's language.
+- Be concise and to the point. Each todo should no longer than 10 words. Do not create more than 5 todos.
+- Match user's message language.
 - Keep todo items synchronized with the context. Finish or create todos as progress changes.
 
 Now share your decision.

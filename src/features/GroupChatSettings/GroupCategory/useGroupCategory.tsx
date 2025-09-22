@@ -25,14 +25,14 @@ export const useChatGroupSettingsCategory = ({
           label: t('groupTab.meta'),
         },
         {
-          icon: <Icon icon={Users} size={iconSize} />,
-          key: GroupSettingsTabs.Members,
-          label: t('groupTab.members'),
-        },
-        {
           icon: <Icon icon={MessagesSquare} size={iconSize} />,
           key: GroupSettingsTabs.Chat,
           label: t('groupTab.chat'),
+        },
+        {
+          icon: <Icon icon={Users} size={iconSize} />,
+          key: GroupSettingsTabs.Members,
+          label: t('groupTab.members'),
         },
       ].filter(Boolean) as MenuProps['items'],
     [t, iconSize],

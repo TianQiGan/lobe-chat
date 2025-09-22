@@ -36,9 +36,9 @@ export default {
     },
   },
   groupTab: {
-    chat: '群聊',
+    chat: '聊天',
     members: '成员',
-    meta: '群聊信息',
+    meta: '基本信息',
   },
   header: {
     desc: '偏好与模型设置',
