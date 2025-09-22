@@ -148,6 +148,9 @@ export default {
     },
     waitingForMore: '更多模型正在 <1>计划接入</1> 中，敬请期待',
   },
+  message: {
+    success: '更新成功',
+  },
   plugin: {
     addMCPPlugin: '添加 MCP 插件',
     addTooltip: '自定义插件',
@@ -163,6 +166,7 @@ export default {
     },
     store: '插件商店',
   },
+
   settingAgent: {
     avatar: {
       title: '助手头像',
@@ -217,7 +221,6 @@ export default {
     },
     title: '应用外观',
   },
-
   settingChat: {
     autoCreateTopicThreshold: {
       desc: '当前消息数超过设定该值后，将自动创建话题',

@@ -9,7 +9,7 @@ import {
   SliderWithInput,
   Text,
 } from '@lobehub/ui';
-import { Form as AntdForm, Input, Switch } from 'antd';
+import { Form as AntdForm, App, Input, Switch } from 'antd';
 import { isEqual } from 'lodash';
 import { Coffee, Rabbit, Turtle } from 'lucide-react';
 import { memo } from 'react';
@@ -31,6 +31,8 @@ const ChatGroupSettings = memo(() => {
   const [form] = Form.useForm();
   const updateConfig = useStore((s) => s.updateGroupConfig);
   const config = useStore(selectors.currentChatConfig, isEqual);
+
+  const { message } = App.useApp();
 
   // Watch the allowDM value to conditionally show revealDM
   const allowDM = AntdForm.useWatch('allowDM', form);
@@ -171,12 +173,14 @@ const ChatGroupSettings = memo(() => {
       }}
       items={[orchestratorSettings, chatSettings]}
       itemsType={'group'}
-      onFinish={({ _modelConfig, ...rest }) => {
-        updateConfig({
+      onFinish={async ({ _modelConfig, ...rest }) => {
+        await updateConfig({
           orchestratorModel: _modelConfig?.model,
           orchestratorProvider: _modelConfig?.provider,
           ...rest,
         });
+
+        message.success(t('message.success'));
       }}
       variant={'borderless'}
       {...FORM_STYLE}
