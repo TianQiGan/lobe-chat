@@ -611,6 +611,14 @@ export const chatAiGroupChat: StateCreator<
         );
         const authorName = authorInfo?.title || (msg.role === 'user' ? realUserName : 'Unknown');
 
+        // Keep user message as-is
+        if (msg.role === 'user') {
+          return {
+            ...msg,
+            content: msg.content,
+          };
+        }
+
         return {
           ...msg,
           content: `<author_name_do_not_include_in_your_response>${authorName}</author_name_do_not_include_in_your_response>${msg.content}`,
