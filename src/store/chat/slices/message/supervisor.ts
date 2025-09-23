@@ -101,6 +101,28 @@ export class GroupChatSupervisor {
       temperature: 0.3,
     };
 
+    // Build trigger_agent schema conditionally based on allowDM
+    const triggerAgentProperties: Record<string, any> = {
+      id: {
+        description: 'The agent id to trigger.',
+        type: 'string',
+      },
+      instruction: {
+        type: 'string',
+      },
+    };
+
+    const triggerAgentRequired = ['instruction', 'id'];
+
+    // Only include target field when DM is allowed
+    if (context.allowDM) {
+      triggerAgentProperties.target = {
+        description: 'The target agent id. Only used when need DM.',
+        type: 'string',
+      };
+      triggerAgentRequired.push('target');
+    }
+
     const responseFormat = {
       name: 'supervisor_decision',
       schema: {
@@ -125,20 +147,8 @@ export class GroupChatSupervisor {
                   {
                     additionalProperties: false,
                     description: 'Trigger an agent to speak',
-                    properties: {
-                      id: {
-                        description: 'The agent id to trigger.',
-                        type: 'string',
-                      },
-                      instruction: {
-                        type: 'string',
-                      },
-                      target: {
-                        description: 'The target agent id. Only used when need DM.',
-                        type: 'string',
-                      },
-                    },
-                    required: ['instruction', 'target', 'id'],
+                    properties: triggerAgentProperties,
+                    required: triggerAgentRequired,
                     type: 'object',
                   },
                   {

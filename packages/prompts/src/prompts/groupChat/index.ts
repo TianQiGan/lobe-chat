@@ -98,7 +98,7 @@ export const buildSupervisorPrompt = ({
     {
       id: 'user',
       name: userName || 'User',
-      role: "user",
+      role: 'user',
     },
     // Then include all agents
     ...availableAgents.map((agent) => ({
@@ -177,9 +177,12 @@ export const buildAgentResponsePrompt = ({
   targetId?: string;
 }): string => {
   const targetText = targetId ? targetId : 'the group publicly';
-  const instructionText = instruction ? `\n\nSUPERVISOR INSTRUCTION: ${instruction}\n\n` : '';
+  const instructionText = instruction ? `SUPERVISOR INSTRUCTION: ${instruction}` : '';
 
-  return `Now it's your turn to respond. You are sending message to ${targetText}. Please respond as this agent would, considering the full conversation history provided above.${instructionText}Directly return the message content, no other text. You do not need add author name or anything else.`;
+  return `
+  ${instructionText}
+
+  Now it's your turn to respond. You are sending message to ${targetText}. Please respond as this agent would, considering the full conversation history provided above. Directly return the message content, no other text. You do not need add author name or anything else.`.trim();
 };
 
 export const groupChatPrompts = {
