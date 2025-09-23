@@ -322,56 +322,19 @@ export class GroupChatSupervisor {
   }
 
   private sanitizeToolCall(raw: any): SupervisorToolCall | null {
-    if (!raw) return null;
+    if (!raw || typeof raw !== 'object') return null;
 
-    const functionCallName =
-      typeof raw?.function === 'object' && typeof raw?.function?.name === 'string'
-        ? raw.function.name
-        : null;
-
-    const potentialName =
-      typeof raw.tool_code === 'string'
-        ? raw.tool_code
-        : typeof raw.toolCode === 'string'
-          ? raw.toolCode
-          : typeof raw.tool_name === 'string'
-            ? raw.tool_name
-            : typeof raw.toolName === 'string'
-              ? raw.toolName
-              : typeof raw.tool === 'string'
-                ? raw.tool
-                : typeof raw.name === 'string'
-                  ? raw.name
-                  : functionCallName;
-
-    if (!potentialName) return null;
-
-    const normalizedName = potentialName
-      .trim()
-      .toLowerCase()
-      .replaceAll(/[\s-]+/g, '_');
-    if (!['create_todo', 'finish_todo', 'trigger_agent'].includes(normalizedName)) {
+    // Since we constrained the JSON schema, we expect a specific format
+    const toolName = raw.tool_name;
+    if (typeof toolName !== 'string' || !['create_todo', 'finish_todo', 'trigger_agent'].includes(toolName)) {
       return null;
     }
 
-    let parameter: unknown;
-
-    if (raw.parameter !== undefined) parameter = raw.parameter;
-    else if (raw.parameters !== undefined) parameter = raw.parameters;
-    else if (raw.args !== undefined) parameter = raw.args;
-    else if (raw.arguments !== undefined) parameter = raw.arguments;
-    else if (raw.function && 'arguments' in raw.function) parameter = raw.function.arguments;
-
-    if (typeof parameter === 'string') {
-      const parsedParameter = this.tryParseJson(parameter);
-      if (parsedParameter !== undefined) {
-        parameter = parsedParameter;
-      }
-    }
-
+    const parameter = raw.parameter;
+    
     return {
       parameter,
-      tool_name: normalizedName as SupervisorToolName,
+      tool_name: toolName as SupervisorToolName,
     };
   }
 
@@ -441,13 +404,16 @@ export class GroupChatSupervisor {
     if (!parameter || typeof parameter !== 'object') return null;
 
     const payload = parameter as Record<string, unknown>;
+    
+    // Since we constrained the schema to require 'content', prioritize it
+    // But keep fallbacks for backward compatibility with existing data
     const candidates: unknown[] = [
-      payload.content,
+      payload.content,  // Primary field from schema
+      payload.id,       // Fallback for current format
       payload.title,
       payload.task,
       payload.text,
       payload.message,
-      payload.id, // Add 'id' as a candidate for todo content
     ];
 
     for (const candidate of candidates) {
@@ -460,90 +426,18 @@ export class GroupChatSupervisor {
   }
 
   private applyFinishTodo(targetTodos: SupervisorTodoItem[], parameter: unknown): boolean {
-    if (Array.isArray(parameter)) {
-      return parameter.reduce((acc, item) => this.applyFinishTodo(targetTodos, item) || acc, false);
+    if (!parameter || typeof parameter !== 'object') return false;
+
+    const payload = parameter as Record<string, unknown>;
+    
+    // Since we constrained the schema to require 'index', we expect it to be present
+    if (typeof payload.index === 'number') {
+      return this.finishTodoByIndex(targetTodos, payload.index);
     }
 
-    if (parameter === false) return false;
-
-    if (parameter === true || parameter === undefined || parameter === null) {
-      return this.finishNextUnfinished(targetTodos);
-    }
-
-    if (typeof parameter === 'number') {
-      return this.finishTodoByIndex(targetTodos, parameter);
-    }
-
-    if (typeof parameter === 'string') {
-      return this.finishTodoByContent(targetTodos, parameter);
-    }
-
-    if (typeof parameter === 'object') {
-      const payload = parameter as Record<string, unknown>;
-
-      if ('all' in payload && payload.all === true) {
-        let updated = false;
-        targetTodos.forEach((todo) => {
-          if (!todo.finished) {
-            todo.finished = true;
-            updated = true;
-          }
-        });
-        return updated;
-      }
-
-      let handled = false;
-      let updated = false;
-
-      if ('index' in payload && typeof payload.index === 'number') {
-        updated = this.finishTodoByIndex(targetTodos, payload.index) || updated;
-        handled = true;
-      }
-
-      if ('indices' in payload && Array.isArray(payload.indices)) {
-        payload.indices.forEach((idx) => {
-          if (typeof idx === 'number') {
-            updated = this.finishTodoByIndex(targetTodos, idx) || updated;
-          }
-        });
-        handled = true;
-      }
-
-      if ('content' in payload && typeof payload.content === 'string') {
-        updated = this.finishTodoByContent(targetTodos, payload.content) || updated;
-        handled = true;
-      }
-
-      if ('contents' in payload && Array.isArray(payload.contents)) {
-        payload.contents.forEach((item) => {
-          if (typeof item === 'string') {
-            updated = this.finishTodoByContent(targetTodos, item) || updated;
-          }
-        });
-        handled = true;
-      }
-
-      if ('next' in payload && payload.next === true) {
-        updated = this.finishNextUnfinished(targetTodos) || updated;
-        handled = true;
-      }
-
-      if (!handled) {
-        updated = this.finishNextUnfinished(targetTodos) || updated;
-      }
-
-      return updated;
-    }
-
-    return this.finishNextUnfinished(targetTodos);
+    return false;
   }
 
-  private finishNextUnfinished(targetTodos: SupervisorTodoItem[]): boolean {
-    const todo = targetTodos.find((item) => !item.finished);
-    if (!todo) return false;
-    todo.finished = true;
-    return true;
-  }
 
   private finishTodoByIndex(targetTodos: SupervisorTodoItem[], index: number): boolean {
     if (!Number.isInteger(index)) return false;
@@ -553,26 +447,6 @@ export class GroupChatSupervisor {
     return true;
   }
 
-  private finishTodoByContent(targetTodos: SupervisorTodoItem[], content: string): boolean {
-    const normalizedContent = content.trim().toLowerCase();
-    if (!normalizedContent) return false;
-
-    const exactMatch = targetTodos.find(
-      (todo) => todo.content.trim().toLowerCase() === normalizedContent,
-    );
-    if (exactMatch) {
-      if (exactMatch.finished) return false;
-      exactMatch.finished = true;
-      return true;
-    }
-
-    const partialMatch = targetTodos.find((todo) =>
-      todo.content.toLowerCase().includes(normalizedContent),
-    );
-    if (!partialMatch || partialMatch.finished) return false;
-    partialMatch.finished = true;
-    return true;
-  }
 
   private buildDecisionFromTool(
     parameter: unknown,

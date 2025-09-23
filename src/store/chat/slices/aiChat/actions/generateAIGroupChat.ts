@@ -43,7 +43,7 @@ const SEQUENTIAL_RESPONSE_DELAY = 1500;
 const getDebounceThreshold = (responseSpeed?: 'slow' | 'medium' | 'fast'): number => {
   switch (responseSpeed) {
     case 'fast': {
-      return 3000;
+      return 1500;
     }
     case 'medium': {
       return 5000;
