@@ -712,8 +712,6 @@ export const chatAiGroupChat: StateCreator<
   internal_triggerSupervisorDecisionDebounced: (groupId: string) => {
     const { internal_cancelSupervisorDecision, internal_triggerSupervisorDecision } = get();
 
-    console.log('Supervisor decision debounced triggered for group', groupId);
-
     internal_cancelSupervisorDecision(groupId);
 
     const groupConfig = chatGroupSelectors.currentGroupConfig(useChatGroupStore.getState());
@@ -762,13 +760,6 @@ export const chatAiGroupChat: StateCreator<
     } = get();
     const existingTimer = supervisorDebounceTimers[groupId];
     const existingAbortController = supervisorDecisionAbortControllers[groupId];
-
-    console.log(`Attempting to cancel supervisor decision for group ${groupId}`, {
-      existingTimer: !!existingTimer,
-      existingAbortController: !!existingAbortController,
-      allTimers: Object.keys(supervisorDebounceTimers),
-      allAbortControllers: Object.keys(supervisorDecisionAbortControllers),
-    });
 
     // Cancel pending debounced timer
     if (existingTimer) {

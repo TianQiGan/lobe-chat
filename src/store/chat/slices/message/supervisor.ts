@@ -1,7 +1,7 @@
 import { groupChatPrompts, groupSupervisorPrompts } from '@lobechat/prompts';
 import { ChatMessage, GroupMemberWithAgent } from '@lobechat/types';
 
-import { chatService } from '@/services/chat';
+import { aiChatService } from '@/services/aiChat';
 
 export interface SupervisorDecision {
   id: string;
@@ -101,23 +101,70 @@ export class GroupChatSupervisor {
       temperature: 0.3,
     };
 
+    const responseFormat = {
+      json_schema: {
+        schema: {
+          items: {
+            additionalProperties: false,
+            properties: {
+              parameter: {
+                type: 'object',
+              },
+              tool_name: {
+                enum: ['create_todo', 'finish_todo', 'trigger_agent'],
+                type: 'string',
+              },
+            },
+            required: ['tool_name'],
+            type: 'object',
+          },
+          type: 'array',
+        },
+      },
+      type: 'json_schema' as const,
+    };
+
     try {
-      // TODO: Replace with structured ouput @Arvin
-      return this.callLLMForDecisionWithStreaming(prompt, context, supervisorConfig);
+      const response = await aiChatService.generateJSON(
+        {
+          messages: [
+            {
+              content: prompt,
+              createdAt: Date.now(),
+              id: '',
+              meta: {},
+              role: 'user',
+              updatedAt: Date.now(),
+            },
+          ],
+          schema: responseFormat,
+          ...supervisorConfig,
+        },
+        context.abortController || new AbortController(),
+      );
 
-      // const response = await chatService.getStructuredCompletion<SupervisorToolCall[]>(
-      //   {
-      //     messages: [{ content: prompt, role: 'user' }],
-      //     response_format: responseFormat,
-      //     stream: false,
-      //     ...supervisorConfig,
-      //   },
-      //   {
-      //     signal: context.abortController?.signal,
-      //   },
-      // );
+      // Parse the response to SupervisorToolCall[]
+      if (Array.isArray(response)) {
+        return response as SupervisorToolCall[];
+      }
 
-      // return response;
+      console.log(response);
+
+      // If response is a string, try to parse it as JSON
+      if (typeof response === 'string') {
+        try {
+          const parsed = JSON.parse(response);
+          if (Array.isArray(parsed)) {
+            return parsed as SupervisorToolCall[];
+          }
+        } catch {
+          // Fall back to string response for legacy parsing
+          return response;
+        }
+      }
+
+      // For any other response format, fall back to string
+      return typeof response === 'object' ? JSON.stringify(response) : String(response);
     } catch (err) {
       if (this.isAbortError(err, context)) {
         throw this.createAbortError();
@@ -140,53 +187,6 @@ export class GroupChatSupervisor {
     const name = (error as DOMException)?.name;
 
     return name === 'AbortError';
-  }
-
-  private async callLLMForDecisionWithStreaming(
-    prompt: string,
-    context: SupervisorContext,
-    supervisorConfig: {
-      model: string;
-      provider: string;
-      temperature: number;
-    },
-  ) {
-    let res = '';
-    let error: Error | null = null;
-
-    await chatService.fetchPresetTaskResult({
-      abortController: context.abortController,
-      onError: (err) => {
-        console.error('Supervisor LLM error (fallback):', err);
-        error = err;
-      },
-      onFinish: async (content) => {
-        console.log('Supervisor LLM response (fallback):', content);
-        res = content.trim();
-      },
-      onLoadingChange: (loading) => {
-        console.log('Supervisor LLM loading state (fallback):', loading);
-      },
-      params: {
-        messages: [{ content: prompt, role: 'user' }],
-        stream: false,
-        ...supervisorConfig,
-      },
-    });
-
-    if (context.abortController?.signal.aborted) {
-      throw this.createAbortError();
-    }
-
-    if (error) {
-      throw error;
-    }
-
-    if (!res) {
-      throw this.createAbortError();
-    }
-
-    return res;
   }
 
   private parseSupervisorResponse(
