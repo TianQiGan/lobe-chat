@@ -1,6 +1,6 @@
-import { Collapse } from '@lobehub/ui';
+import { Collapse, Text } from '@lobehub/ui';
 import { useTheme } from 'antd-style';
-import { CheckCircle, Circle, Clock } from 'lucide-react';
+import { CheckCircle, Circle } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
@@ -27,22 +27,11 @@ const TodoList = memo<TodoListProps>(({ data }) => {
 
   // Create the header with progress indicator
   const headerContent = (
-    <Flexbox align="center" gap={8} horizontal>
-      <Clock color={theme.colorPrimary} size={16} />
-      <span>{t('supervisor.todoList.title')}</span>
-      <span
-        style={{
-          backgroundColor: theme.colorPrimaryBg,
-          borderRadius: theme.borderRadiusSM,
-          color: theme.colorPrimary,
-          fontSize: theme.fontSizeSM,
-          fontWeight: 400,
-          marginLeft: 'auto',
-          padding: '2px 8px',
-        }}
-      >
+    <Flexbox align="center" gap={8} horizontal width="200px">
+      <Text>
+        {t('supervisor.todoList.title')}
         {completedCount}/{totalCount}
-      </span>
+      </Text>
     </Flexbox>
   );
 
@@ -72,6 +61,7 @@ const TodoList = memo<TodoListProps>(({ data }) => {
               borderBottom:
                 index < todos.length - 1 ? `1px solid ${theme.colorBorderSecondary}` : 'none',
               padding: '8px 0',
+              width: '100%',
             }}
           >
             <Center
@@ -107,7 +97,14 @@ const TodoList = memo<TodoListProps>(({ data }) => {
           label: headerContent,
         },
       ]}
+      padding={{ body: 0 }}
       size="small"
+      styles={{
+        header: {
+          fontSize: theme.fontSize,
+          padding: '0px',
+        },
+      }}
       variant="borderless"
     />
   );

@@ -112,6 +112,18 @@ export class GroupChatSupervisor {
                 anyOf: [
                   {
                     additionalProperties: false,
+                    description: 'Create a new todo item',
+                    properties: {
+                      content: {
+                        description: 'The todo content or description.',
+                        type: 'string',
+                      },
+                    },
+                    required: ['content'],
+                    type: 'object',
+                  },
+                  {
+                    additionalProperties: false,
                     description: 'Trigger an agent to speak',
                     properties: {
                       id: {
@@ -435,6 +447,7 @@ export class GroupChatSupervisor {
       payload.task,
       payload.text,
       payload.message,
+      payload.id, // Add 'id' as a candidate for todo content
     ];
 
     for (const candidate of candidates) {
