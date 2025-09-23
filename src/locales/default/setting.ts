@@ -334,8 +334,8 @@ export default {
   },
   settingGroupChat: {
     allowDM: {
-      desc: '允许成员之间发送私信',
-      title: '允许私信',
+      desc: '关闭后，你仍然可以主动向助手发送私信',
+      title: '允许助手发送私信',
     },
     enableSupervisor: {
       desc: '启用群聊主持人功能，主持人将管理群聊对话流程',

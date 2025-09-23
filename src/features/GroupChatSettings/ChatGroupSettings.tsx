@@ -167,7 +167,7 @@ const ChatGroupSettings = memo(() => {
         },
         enableSupervisor: config?.enableSupervisor ?? true,
       }}
-      items={[orchestratorSettings, chatSettings]}
+      items={[orchestratorSettings, ...(enableSupervisor ? [chatSettings] : [])]}
       itemsType={'group'}
       onFinish={async ({ _modelConfig, ...rest }) => {
         await updateConfig({
