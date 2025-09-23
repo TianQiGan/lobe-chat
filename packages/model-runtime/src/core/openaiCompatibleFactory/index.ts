@@ -362,27 +362,6 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
       }
     }
 
-    async generateObject(payload: GenerateObjectPayload, options?: GenerateObjectOptions) {
-      const { messages, schema, model } = payload;
-      const res = await this.client!.responses.create(
-        {
-          input: messages,
-          model,
-          text: { format: { strict: true, type: 'json_schema', ...schema } },
-          user: options?.user,
-        },
-        { headers: options?.headers, signal: options?.signal },
-      );
-
-      const text = res.output_text;
-      try {
-        return JSON.parse(text);
-      } catch {
-        console.error('parse json error:', text);
-        return undefined;
-      }
-    }
-
     async embeddings(
       payload: EmbeddingsPayload,
       options?: EmbeddingsOptions,
