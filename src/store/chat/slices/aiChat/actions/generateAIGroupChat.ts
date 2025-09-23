@@ -58,17 +58,12 @@ const getDebounceThreshold = (responseSpeed?: 'slow' | 'medium' | 'fast'): numbe
 };
 
 const formatSupervisorTodoContent = (todos: SupervisorTodoItem[]): string => {
-  if (!todos || todos.length === 0) {
-    return ['### Todo List', '', '- [x] All tasks are complete.'].join('\n');
-  }
-
-  const lines = todos.map((item) => {
-    const checkbox = item.finished ? 'x' : ' ';
-    const content = item.finished ? `~~${item.content}~~` : item.content;
-    return `- [${checkbox}] ${content}`;
+  // Pass todo data as JSON string for dedicated UI processing
+  return JSON.stringify({
+    type: 'supervisor_todo',
+    todos: todos || [],
+    timestamp: Date.now(),
   });
-
-  return ['### Todo List', '', ...lines].join('\n');
 };
 
 /**

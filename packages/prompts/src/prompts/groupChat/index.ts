@@ -98,13 +98,13 @@ export const buildSupervisorPrompt = ({
     {
       id: 'user',
       name: userName || 'User',
-      role: 'Human participant',
+      role: "user",
     },
     // Then include all agents
     ...availableAgents.map((agent) => ({
       id: agent.id,
       name: agent.title || agent.id,
-      role: 'AI Agent',
+      role: 'assistant',
     })),
   ];
 
@@ -115,29 +115,8 @@ export const buildSupervisorPrompt = ({
   const todoListTag = buildTodoListTag(todoList);
 
   // Build rules and examples based on allowDM setting
-  const dmRules = allowDM
-    ? `- Direct messages are allowed. When an agent should DM someone, set "target" to the recipient agent id or "user".
-- If no "target" is provided, the message will be sent to the whole group.`
-    : `- DMs are disabled. Do not provide a "target" field; all messages are public.`;
-
-  const naturalFlowRule = allowDM
-    ? `- Keep the conversation natural. If a member DM'd someone, consider replying privately to the same participant when appropriate.`
-    : `- Keep the conversation natural in the group setting.`;
-
-  const triggerAgentExample = allowDM
-    ? '{"tool_name": "trigger_agent", "parameter": {"id": "agt_01", "target": "user", "instruction": "Thank them privately for the update"}}'
-    : '{"tool_name": "trigger_agent", "parameter": {"id": "agt_01", "instruction": "Summarize the main points for everyone"}}';
-
-  const exampleArray = allowDM
-    ? `[
-  {"tool_name": "create_todo", "parameter": {"content": "Summarize outcomes before the meeting ends"}},
-  {"tool_name": "finish_todo", "parameter": {"content": "Review agenda"}},
-  ${triggerAgentExample}
-]`
-    : `[
-  {"tool_name": "create_todo", "parameter": "Share the highlights with the team"},
-  ${triggerAgentExample}
-]`;
+  const dmRules = `- Direct messages are allowed. When an agent should DM someone, set "target" to the recipient agent id or "user".
+- If no "target" is provided, the message will be sent to the whole group.`;
 
   const prompt = `
 You are a conversation supervisor for a group chat with multiple AI agents. Your role is to decide which agents should respond next based on the conversation context. Here's the group detail:
@@ -161,18 +140,17 @@ RULES:
 - You MUST respond with a JSON array. Each item represents invoking one of the available tools below.
 - Available tools:
   - "create_todo": add a new todo. Parameter can be a string or an object like {"content": "..."}. Always create actionable, brief todos.
-  - "finish_todo": mark todos as completed. Use true to finish the next unfinished item, {"index": 0} for a specific position, or {"content": "..."} to match by text. Use {"all": true} to close everything.
-  - "trigger_agent": ask an agent to speak. Parameter must be {"id": "agentId"} with optional "instruction" and optional "target".
+  - "finish_todo": mark todos as completed. Use true to finish the next unfinished item, {"index": 0} for a specific position.
+  - "trigger_agent": ask an agent to speak. Parameter must be {"id": "agentId"} with optional "instruction"${allowDM ? ' and optional "target" for DM.' : '.'}
 - Execute tools in the order they should happen. Return [] when no further action is needed.
 - Stop the conversation by returning [] (an empty array).
-- ${dmRules}
-- ${naturalFlowRule}
 
 WHEN ASKING AGENTS TO SPEAK:
 
 - Only reference agents from the member list. Never invent new IDs.
 - Provide concise English instructions when guiding agents via "instruction".
 - Be concise and to the point. Each instruction should no longer than 10 words. Always use English.
+${allowDM ? dmRules : ''}
 
 WHEN GENERATING TODOS:
 
@@ -199,9 +177,9 @@ export const buildAgentResponsePrompt = ({
   targetId?: string;
 }): string => {
   const targetText = targetId ? targetId : 'the group publicly';
-  const instructionText = instruction ? `\n\nSupervisor instruction: ${instruction}` : '';
+  const instructionText = instruction ? `\n\nSUPERVISOR INSTRUCTION: ${instruction}\n\n` : '';
 
-  return `Now it's your turn to respond. You are sending message to ${targetText}. Please respond as this agent would, considering the full conversation history provided above.${instructionText} Directly return the message content, no other text. You do not need add author name or anything else.`;
+  return `Now it's your turn to respond. You are sending message to ${targetText}. Please respond as this agent would, considering the full conversation history provided above.${instructionText}Directly return the message content, no other text. You do not need add author name or anything else.`;
 };
 
 export const groupChatPrompts = {

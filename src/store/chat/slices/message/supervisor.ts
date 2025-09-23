@@ -102,43 +102,84 @@ export class GroupChatSupervisor {
     };
 
     const responseFormat = {
-      json_schema: {
-        schema: {
-          items: {
+      name: 'supervisor_decision',
+      schema: {
+        $defs: {
+          tool_call: {
             additionalProperties: false,
             properties: {
               parameter: {
-                type: 'object',
+                anyOf: [
+                  {
+                    additionalProperties: false,
+                    description: 'Trigger an agent to speak',
+                    properties: {
+                      id: {
+                        description: 'The agent id to trigger.',
+                        type: 'string',
+                      },
+                      instruction: {
+                        type: 'string',
+                      },
+                      target: {
+                        description: 'The target agent id. Only used when need DM.',
+                        type: 'string',
+                      },
+                    },
+                    required: ['instruction', 'target', 'id'],
+                    type: 'object',
+                  },
+                  {
+                    additionalProperties: false,
+                    description: 'Finish a todo by index or all todos',
+                    properties: {
+                      index: {
+                        type: 'number',
+                      },
+                    },
+                    required: ['index'],
+                    type: 'object',
+                  },
+                ],
               },
               tool_name: {
                 enum: ['create_todo', 'finish_todo', 'trigger_agent'],
                 type: 'string',
               },
             },
-            required: ['tool_name'],
+            required: ['tool_name', 'parameter'],
             type: 'object',
           },
-          type: 'array',
         },
+        additionalProperties: false,
+        properties: {
+          tool_calls: {
+            items: {
+              $ref: '#/$defs/tool_call',
+            },
+            type: 'array',
+          },
+        },
+        required: ['tool_calls'],
+        type: 'object',
       },
-      type: 'json_schema' as const,
+      // strict: true,
+      type: 'json_schema',
     };
 
     try {
       const response = await aiChatService.generateJSON(
         {
           messages: [
+            // @ts-ignore
             {
               content: prompt,
-              createdAt: Date.now(),
-              id: '',
-              meta: {},
               role: 'user',
-              updatedAt: Date.now(),
             },
           ],
           schema: responseFormat,
           ...supervisorConfig,
+          provider: 'openai',
         },
         context.abortController || new AbortController(),
       );

@@ -378,6 +378,12 @@ export default {
     action: '翻译',
     clear: '删除翻译',
   },
+  supervisor: {
+    todoList: {
+      allComplete: '所有任务已完成',
+      title: '任务列表',
+    },
+  },
   tts: {
     action: '语音朗读',
     clear: '删除语音',
